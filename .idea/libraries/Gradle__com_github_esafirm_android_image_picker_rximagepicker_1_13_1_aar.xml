@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.esafirm.android-image-picker:rximagepicker:1.13.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ec260a0b87b926524402e1e5d3e639c0/rximagepicker-1.13.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ec260a0b87b926524402e1e5d3e639c0/rximagepicker-1.13.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.esafirm.android-image-picker/rximagepicker/1.13.1/5ee0eeb3c414592261bfa92ea062862bf7406bfd/rximagepicker-1.13.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
