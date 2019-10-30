@@ -30,6 +30,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = this;
     private static final String TAG = "LoginActivity";
@@ -61,90 +71,137 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn(){
-        Log.d(TAG, "signIn");
-        if (!validateForm()){
-            return;
-        }
+//        Log.d(TAG, "signIn");
+//        if (!validateForm()){
+//            return;
+//        }
 
-        String nipValue = nip.getText().toString();
+//        String nipValue = nip.getText().toString();
+        String usernameValue = nip.getText().toString();
         String pwdValue = password.getText().toString();
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
 
-        mAuth.signInWithEmailAndPassword(nipValue, pwdValue)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        apiServices.loginRequest(nip.getText().toString(), password.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signIn:onComplete:"+task.isSuccessful());
-
-                        if (task.isSuccessful()){
-                            onAuthSuccess(task.getResult().getUser());
-                        }else{
-                            Toast.makeText(context, "Sign In Failed", Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            loading.dismiss();
+                            try {
+                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                                if (jsonRESULTS.getString("error").equals("false")) {
+                                    Toast.makeText(context, "Berhasil Login", Toast.LENGTH_SHORT).show();
+                                    String nama = jsonRESULTS.getJSONObject("user").getString("nama");
+                                    if (nama.equalsIgnoreCase("cmo")){
+                                        Intent intent = new Intent(context, HomeCMOActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }else if(nama.equalsIgnoreCase("bm")){
+                                        Intent intent = new Intent(context, HomeBMActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }else if (nama.equalsIgnoreCase("rm")){
+                                        Intent intent = new Intent(context, HomeRMActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                } else {
+                                    String error_message = jsonRESULTS.getString("error_msg");
+                                    Toast.makeText(context, error_message, Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }else {
+                            loading.dismiss();
                         }
                     }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+                        loading.dismiss();
+                    }
                 });
+
+//        mAuth.signInWithEmailAndPassword(nipValue, pwdValue)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        Log.d(TAG, "signIn:onComplete:"+task.isSuccessful());
+//
+//                        if (task.isSuccessful()){
+//                            onAuthSuccess(task.getResult().getUser());
+//                        }else{
+//                            Toast.makeText(context, "Sign In Failed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
             //save data login
-            SessionManager.saveDataLogin(context, nipValue, pwdValue, rememberme.isChecked());
+            SessionManager.saveDataLogin(context, usernameValue, pwdValue, rememberme.isChecked());
 
             //save login flag
             SessionManager.saveLoginFlag(context, true);
     }
 
-    public void onAuthSuccess(FirebaseUser user){
-        String username = usernameFromEmail(user.getEmail());
-        System.out.println(username);
-        SessionManager.saveUsername(context, username);
-
-        writeNewAdmin(user.getUid(), username, user.getEmail());
-
-        if (username.equalsIgnoreCase("cmo")){
-            Intent intent = new Intent(context, HomeCMOActivity.class);
-            startActivity(intent);
-            finish();
-        }else if(username.equalsIgnoreCase("bm")){
-            Intent intent = new Intent(context, HomeBMActivity.class);
-            startActivity(intent);
-            finish();
-        }else if (username.equalsIgnoreCase("rm")){
-            Intent intent = new Intent(context, HomeRMActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-    }
+//    public void onAuthSuccess(FirebaseUser user){
+//        String username = usernameFromEmail(user.getEmail());
+//        System.out.println(username);
+//        SessionManager.saveUsername(context, username);
+//
+//        writeNewAdmin(user.getUid(), username, user.getEmail());
+//
+//        if (username.equalsIgnoreCase("cmo")){
+//            Intent intent = new Intent(context, HomeCMOActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }else if(username.equalsIgnoreCase("bm")){
+//            Intent intent = new Intent(context, HomeBMActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }else if (username.equalsIgnoreCase("rm")){
+//            Intent intent = new Intent(context, HomeRMActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//
+//    }
 
     //fungsi mengambil nama di depan @ email
-    private String usernameFromEmail(String email){
-        if(email.contains("@")){
-            return email.split("@")[0];
-        }else{
-            return email;
-        }
-    }
+//    private String usernameFromEmail(String email){
+//        if(email.contains("@")){
+//            return email.split("@")[0];
+//        }else{
+//            return email;
+//        }
+//    }
 
-    private boolean validateForm(){
-        boolean result = true;
-        if(TextUtils.isEmpty(nip.getText().toString())){
-            nip.setError("Required");
-            result = false;
-        }else {
-            nip.setError(null);
-        }
-        if (TextUtils.isEmpty(password.getText().toString())){
-            password.setError("Required");
-            result = false;
-        }else {
-            password.setError(null);
-        }
-
-        return result;
-    }
+//    private boolean validateForm(){
+//        boolean result = true;
+//        if(TextUtils.isEmpty(nip.getText().toString())){
+//            nip.setError("Required");
+//            result = false;
+//        }else {
+//            nip.setError(null);
+//        }
+//        if (TextUtils.isEmpty(password.getText().toString())){
+//            password.setError("Required");
+//            result = false;
+//        }else {
+//            password.setError(null);
+//        }
+//
+//        return result;
+//    }
 
     // menulis ke Database
-    private void writeNewAdmin(String userId, String name, String nip) {
-        Admin admin = new Admin(name, nip);
-
-        mDatabase.child("admins").child(userId).setValue(admin);
-    }
+//    private void writeNewAdmin(String userId, String name, String nip) {
+//        Admin admin = new Admin(name, nip);
+//
+//        mDatabase.child("admins").child(userId).setValue(admin);
+//    }
 
     private void checkRememberMe(){
         if(SessionManager.getRemember(context)){
