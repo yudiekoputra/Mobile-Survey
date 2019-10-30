@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.github.mumayank:AirLocation:1.2'
 
     //koneksi firebase
-    implementation 'com.google.firebase:firebase-core:17.2.0'
+    implementation 'com.google.firebase:firebase-core:17.2.1'
     //koneksi database firebase
     implementation 'com.google.firebase:firebase-database:19.2.0'
     //auth firebase
@@ -82,7 +82,7 @@ dependencies {
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.3'
 
     implementation 'com.synnapps:carouselview:0.1.5'

@@ -1,5 +1,6 @@
 package com.bcafinance.itdp.mobilesurvey.helper;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -14,6 +15,10 @@ public interface RequestAPIServices {
     //untuk memanggil list user
 //    @GET("users")
 //    Call<ListUserModel> getListUser(@Query("page")int page);
+    @FormUrlEncoded
+    @POST("login.php")
+    Call<ResponseBody> loginRequest(@Field("username") String username,
+                                    @Field("password") String password);
 
     //ini untuk create user baru
 //    @FormUrlEncoded

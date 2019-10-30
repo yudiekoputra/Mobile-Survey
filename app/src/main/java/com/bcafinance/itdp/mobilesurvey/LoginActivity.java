@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeBMActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeRMActivity;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,12 +39,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button buttonLogin;
     private FirebaseAuth mAuth;
     private int RC_SIGN_IN = 1;
+    private RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        mApiService = UtilsApi.getAPIService();
+        apiServices = APIUtilities.getAPIServices();
 
         //memanggil fungsi
         mDatabase = FirebaseDatabase.getInstance().getReference();
