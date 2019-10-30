@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragmentsCMO.Edit_Form_Survey.FormSurveyLingkunganUsahaEdit">
+
+<LinearLayout
+    style="@style/parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="9"
+            android:text="@string/surveyTempatUsaha"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/barExpandNarasumber1"
+        style="@style/expandBarText"
+        android:text="Narasumber 1"/>
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/layoutNarasumber1"
+        style="@style/expandLayout"
+        app:ael_expanded="false"
+        app:ael_interpolator="accelerate"
+        app:ael_orientation="vertical">
+
+        <LinearLayout style="@style/linearExpandText">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:text="@string/namaNarasumber" />
+
+            <TextView
+                style="@style/viewParent.TitikDua"
+                android:text=":" />
+
+            <EditText
+                android:id="@+id/namaNarasumber1"
+                style="@style/viewParent.EditText"
+                android:hint="@string/namaNarasumber"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanTigaDua" />
+
+            <Spinner
+                android:id="@+id/pertanyaanTigaDua"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanTigaDua"
+                style="@style/parent"
+                android:inputType="text"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanTigaTiga" />
+
+            <Spinner
+                android:id="@+id/pertanyaanTigaTiga"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <LinearLayout style="@style/linearExpandText">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/jabatan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <EditText
+                    android:id="@+id/jawabanTigaTiga"
+                    style="@style/viewParent.EditText"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+    <TextView
+        android:id="@+id/barExpandNarasumber2"
+        style="@style/expandBarText"
+        android:text="Narasumber 2"/>
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/layoutNarasumber2"
+        style="@style/expandLayout"
+        app:ael_expanded="false"
+        app:ael_interpolator="accelerate"
+        app:ael_orientation="vertical">
+
+        <LinearLayout style="@style/linearExpandText">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:text="@string/namaNarasumber" />
+
+            <TextView
+                style="@style/viewParent.TitikDua"
+                android:text=":" />
+
+            <EditText
+                android:id="@+id/namaNarasumber2"
+                style="@style/viewParent.EditText"
+                android:hint="@string/namaNarasumber"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanTigaEmpat" />
+
+            <Spinner
+                android:id="@+id/pertanyaanTigaEmpat"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanTigaEmpat"
+                style="@style/parent"
+                android:inputType="text"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanTigaLima" />
+
+            <Spinner
+                android:id="@+id/pertanyaanTigaLima"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <LinearLayout style="@style/linearExpandText">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/jabatan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <EditText
+                    android:id="@+id/jawabanTigaLima"
+                    style="@style/viewParent.EditText"
+                    android:inputType="text" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/buttonSubmitSurveyLingkunganUsaha"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="SUBMIT" />
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">Mobile Survey</string>
+    <string name="login_form">Login</string>
+    <string name="inputPassword">Input Password</string>
+    <string name="label_rememberme">Remember Me</string>
+
+    <string name="labelSemangat">Let\'s have a beautiful day</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="profile">Profile</string>
+    <string name="labelFormSurvey">Form Survey</string>
+
+    <!--sub judul form survey-->
+    <string name="identitasKonsumen">IDENTITAS KONSUMEN</string>
+    <string name="surveyKonsumen">SURVEY KONSUMEN</string>
+    <string name="surveyRumahKonsumen">SURVEY RUMAH KONSUMEN</string>
+    <string name="verifikasiLingkunganRumah">VERIFIKASI LINGKUNGAN RUMAH</string>
+    <string name="hasilPengamatanUsaha">HASIL PENGAMATAN LOKASI USAHA</string>
+    <string name="surveyTempatUsaha">SURVEY TEMPAT USAHA</string>
+    <string name="fotoRumah">FOTO RUMAH</string>
+    <string name="fotoKantor">FOTO USAHA/KANTOR</string>
+    <string name="informasiTambahan">INFORMASI TAMBAHAN</string>
+
+    <!--identitas konsumen-->
+    <string name="namaKonsumen">Nama Konsumen</string>
+    <string name="noKtp">No KTP</string>
+    <string name="tempatLahir">Tempat Lahir</string>
+    <string name="tanggalLahir">Tanggal Lahir</string>
+    <string name="alamatRumah">Alamat Rumah</string>
+    <string name="kelurahan">Kelurahan</string>
+    <string name="kecamatan">Kecamatan</string>
+    <string name="kodePos">Kode Pos</string>
+    <string name="noTelp">No. Telp/HP</string>
+    <string name="namaPasangan">Nama Pasangan</string>
+    <string name="jmlTanggungan">Jumlah Tanggungan</string>
+    <string name="namaIbuKandung">Nama Ibu Kandung</string>
+    <string name="namaTempatUsaha">Nama Tempat Usaha</string>
+    <string name="alamatUsaha">Alamat Tempat Usaha</string>
+    <string name="merk">Merk/Tipe/Tahun Mobil</string>
+    <string name="warnaMobil">Warna Mobil</string>
+    <string name="dealerShowroom">Dealer/Showroom</string>
+    <string name="tanggalSurvey">Tanggal Survey</string>
+    <string name="jamSurvey">Jam Survey</string>
+
+    <!--survey konsumen-->
+    <string name="pertanyaanSatu">Apakah No. Telp Rumah/HP tersambung saat dihubungi di lokasi?</string>
+    <string name="pertanyaanDua">Tujuan Penggunaan Kredit?</string>
+    <string name="pertanyaanTiga">Deskripsi Kendaraan :</string>
+    <string name="platNomor">Plat Nomor</string>
+    <string name="merkTipe">Merk/Type</string>
+    <string name="warna">Warna</string>
+    <string name="tahunKendaraan">Tahun Kendaraan</string>
+    <string name="pertanyaanEmpat">Angsuran Lain :</string>
+    <string name="jenisKredit">Jenis Kredit</string>
+    <string name="TotalAngsuranPerbulan">Total Angsuran Perbulan</string>
+    <string name="totalPenghasilan">Total Penghasilan</string>
+    <string name="pertanyaanLima">Tanggapan saat dilakukan survey?</string>
+
+    <!--Survey Rumah Konsumen-->
+    <string name="pertanyaanEnam">Kondisi jalan masuk depan rumah calon konsumen?</string>
+    <string name="pertanyaanTujuh">Lingkungan rumah calon konsumen?</string>
+    <string name="pertanyaanDelapan">Bentuk fisik rumah calon konsumen?</string>
+    <string name="pertanyaanSembilan">Kondisi fisik rumah calon konsumen?</string>
+    <string name="pertanyaanSepuluh">Kondisi perabotan di dalam rumah?</string>
+    <string name="pertanyaanSebelas">Tipe rumah?</string>
+    <string name="pertanyaanDuaBelas">Daya listrik rumah konsumen?</string>
+    <string name="pertanyaanTigaBelas">Lokasi parkir mobil?</string>
+
+    <!--Verifikasi Lingkungan Rumah-->
+    <string name="namaNarasumber">Nama Narasumber</string>
+    <string name="pertanyaanEmpatBelas">Pihak yang diverifikasi?</string>
+    <string name="pertanyaanLimaBelas">Lama konsumen tinggal di daerah tersebut?</string>
+    <string name="pertanyaanEnamBelas">Pekerjaan calon konsumen?</string>
+    <string name="pertanyaanTujuhBelas">Pekerjaan pasangan?</string>
+    <string name="pertanyaanDelapanBelas">Kepemilikan mobil lain?</string>
+    <string name="pertanyaanSembilanBelas">Karakter konsumen di lingkungan?</string>
+    <string name="pertanyaanDuaPuluh">Status rumah calon konsumen?</string>
+    <string name="pertanyaanDuaSatu">Pihak yang diverifikasi?</string>
+    <string name="pertanyaanDuaDua">Lama konsumen tinggal di daerah tersebut?</string>
+    <string name="pertanyaanDuaTiga">Pekerjaan calon konsumen?</string>
+    <string name="pertanyaanDuaEmpat">Pekerjaan pasangan?</string>
+    <string name="pertanyaanDuaLima">Kepemilikan mobil lain?</string>
+    <string name="pertanyaanDuaEnam">Karakter konsumen di lingkungan?</string>
+    <string name="pertanyaanDuaTujuh">Status rumah calon konsumen?</string>
+
+    <!--hasil pengamatan surveyor terhadap lokasi usaha/kantor-->
+    <string name="pertanyaanDuaDelapan">Fisik bangunan/Kantor ?</string>
+    <string name="pertanyaanDuaSembilan">Situasi lingkungan tempat usaha/kantor?</string>
+    <string name="pertanyaanTigaPuluh">Fisik bangunan tempat usaha/kantor?</string>
+    <string name="pertanyaanTigaSatu">Aktivitas tempat usaha/kantor?</string>
+
+    <!--survey lingkungan tempat usaha/kantor-->
+    <string name="pertanyaanTigaDua">Hubungan Narasumber dengan calon konsumen?</string>
+    <string name="pertanyaanTigaTiga">Lama calon konsumen bekerja?</string>
+    <string name="pertanyaanTigaEmpat">Hubungan Narasumber dengan calon konsumen?</string>
+    <string name="pertanyaanTigaLima">Lama calon konsumen bekerja?</string>
+    <string name="jabatan">Jabatan</string>
+
+    <!--Informaasi Tambahan-->
+    <string name="informasiTambahanText">Informasi Tambahan :</string>
+    <string name="title_activity_get_maps_address">Map</string>
+    <string name="title_activity_maps_usaha">Map</string>
+</resources>

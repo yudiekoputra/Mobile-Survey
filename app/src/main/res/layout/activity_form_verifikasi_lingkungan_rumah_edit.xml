@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragmentsCMO.Edit_Form_Survey.FormVerifikasiLingkunganRumahEdit">
+
+<LinearLayout
+    style="@style/parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="9"
+            android:text="@string/verifikasiLingkunganRumah"
+            android:textSize="24sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/barExpandNarasumber1"
+        style="@style/expandBarText"
+        android:text="Narasumber 1"/>
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/layoutNarasumber1"
+        style="@style/expandLayout"
+        app:ael_expanded="false"
+        app:ael_interpolator="accelerate"
+        app:ael_orientation="vertical">
+
+        <LinearLayout style="@style/linearExpandText">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:text="@string/namaNarasumber" />
+
+            <TextView
+                style="@style/viewParent.TitikDua"
+                android:text=":" />
+
+            <EditText
+                android:id="@+id/namaNarasumber1"
+                style="@style/viewParent.EditText"
+                android:hint="@string/namaNarasumber"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanEmpatBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanEmpatBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanLimaBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanLimaBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanEnamBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanEnamBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanEnamBelas"
+                style="@style/parent"
+                android:inputType="text"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanTujuhBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanTujuhBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanTujuhBelas"
+                style="@style/parent"
+                android:inputType="text"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDelapanBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDelapanBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/jawabanDelapanBelasTipe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:hint="Tipe"
+                    android:inputType="text" />
+                <EditText
+                    android:id="@+id/jawabanDelapanBelasWarna"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:hint="Warna"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanSembilanBelas" />
+
+            <Spinner
+                android:id="@+id/pertanyaanSembilanBelas"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaPuluh" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaPuluh"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+            <EditText
+                android:id="@+id/jawabanDuaPuluh"
+                style="@style/parent"
+                android:inputType="text"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+    <TextView
+        android:id="@+id/barExpandNarasumber2"
+        style="@style/expandBarText"
+        android:text="Narasumber 2"/>
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/layoutNarasumber2"
+        style="@style/expandLayout"
+        app:ael_expanded="false"
+        app:ael_interpolator="accelerate"
+        app:ael_orientation="vertical">
+
+        <LinearLayout style="@style/linearExpandText">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:text="@string/namaNarasumber" />
+
+            <TextView
+                style="@style/viewParent.TitikDua"
+                android:text=":" />
+
+            <EditText
+                android:id="@+id/namaNarasumber2"
+                style="@style/viewParent.EditText"
+                android:hint="@string/namaNarasumber"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaSatu" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaSatu"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaDua" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaDua"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaTiga" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaTiga"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanDuaTiga"
+                style="@style/parent"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaEmpat" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaEmpat"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/jawabanDuaEmpat"
+                style="@style/parent"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaLima" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaLima"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/jawabanDuaLimaTipe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:hint="Tipe"
+                    android:inputType="text" />
+                <EditText
+                    android:id="@+id/jawabanDuaLimaWarna"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:hint="Warna"
+                    android:inputType="text" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaEnam" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaEnam"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearExpandSpinner"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/viewParent"
+                android:text="@string/pertanyaanDuaTujuh" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDuaTujuh"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+            <EditText
+                android:id="@+id/jawabanDuaTujuh"
+                style="@style/parent"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/buttonSubmitVerifikasiLingkunganRumah"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="SUBMIT" />
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

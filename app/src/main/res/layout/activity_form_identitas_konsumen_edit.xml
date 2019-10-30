@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragmentsCMO.Edit_Form_Survey.FormIdentitasKonsumenEdit">
+
+<LinearLayout
+    style="@style/parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/textJudul"
+        android:text="@string/identitasKonsumen"
+        android:textSize="24sp" />
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/namaKonsumen" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/namaKonsumen"
+            style="@style/viewParent.EditText"
+            android:hint="@string/namaKonsumen"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/noKtp" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/noKTP"
+            style="@style/viewParent.EditText"
+            android:hint="@string/noKtp"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/tempatLahir" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/tempatLahir"
+            style="@style/viewParent.EditText"
+            android:hint="@string/tempatLahir"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/tanggalLahir" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/tanggalLahir"
+            style="@style/viewParent.EditText"
+            android:drawableStart="@android:drawable/ic_menu_my_calendar"
+            android:drawableTint="@color/warnaHitam"
+            android:hint="@string/tanggalLahir"
+            android:inputType="none" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_height="60dp">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:text="@string/alamatRumah" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/alamatRumah"
+            style="@style/viewParent.EditText"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="@string/alamatRumah"
+            android:lines="2"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kelurahan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kelurahanRumah"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kelurahan"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kecamatan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kecamatanRumah"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kecamatan"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kodePos" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kodePosRumah"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kodePos"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/noTelp" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/noTelp"
+            style="@style/viewParent.EditText"
+            android:hint="@string/noTelp"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/namaPasangan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/namaPasangan"
+            style="@style/viewParent.EditText"
+            android:hint="@string/namaPasangan"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="Jml Tanggungan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/jmlTanggungan"
+            style="@style/viewParent.EditText"
+            android:hint="@string/jmlTanggungan"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/namaIbuKandung" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/namaIbuKandung"
+            style="@style/viewParent.EditText"
+            android:hint="@string/namaIbuKandung"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="Nama Usaha" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/namaTempatUsaha"
+            style="@style/viewParent.EditText"
+            android:hint="@string/namaTempatUsaha"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_height="60dp">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:text="Alamat Usaha" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/alamatUsaha"
+            style="@style/viewParent.EditText"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:lines="2"
+            android:hint="@string/alamatUsaha"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kelurahan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kelurahanUsaha"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kelurahan"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kecamatan" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kecamatanUsaha"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kecamatan"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/kodePos" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/kodePosUsaha"
+            style="@style/viewParent.EditText"
+            android:hint="@string/kodePos"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/merk" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/merkMobil"
+            style="@style/viewParent.EditText"
+            android:hint="@string/merk"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/warnaMobil" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/warnaMobil"
+            style="@style/viewParent.EditText"
+            android:hint="@string/warnaMobil"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/dealerShowroom" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/dealerShowroom"
+            style="@style/viewParent.EditText"
+            android:hint="@string/dealerShowroom"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/tanggalSurvey" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/tanggalSurvey"
+            style="@style/viewParent.EditText"
+            android:drawableStart="@android:drawable/ic_menu_my_calendar"
+            android:drawableTint="@color/warnaHitam"
+            android:hint="@string/tanggalSurvey"
+            android:inputType="none" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/linearExpandText">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:text="@string/jamSurvey" />
+
+        <TextView
+            style="@style/viewParent.TitikDua"
+            android:text=":" />
+
+        <EditText
+            android:id="@+id/jamSurvey"
+            style="@style/viewParent.EditText"
+            android:hint="@string/jamSurvey"
+            android:inputType="datetime" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/buttonSubmitIdentitasKonsumen"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="SUBMIT" />
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>

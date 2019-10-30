@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentsCMO.ViewSurveyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:fillColor="#FFFFFF"
+            app:pageColor="#000000"
+            app:radius="6dp"
+            app:slideInterval="3000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"/>
+
+        <TextView
+            android:id="@+id/namaKonsumen"
+            style="@style/TextContent"
+            android:textColor="#000000"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="nama konsumen"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/noTelp"
+            style="@style/TextContent"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            android:text="no Telp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="No KTP" />
+
+                <TextView
+                    android:id="@+id/noKTP"
+                    style="@style/TextContent"
+                    android:text="no KTP"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Tanggal Lahir" />
+
+                <TextView
+                    android:id="@+id/tanggalLahir"
+                    style="@style/TextContent"
+                    android:text="Tanggal Lahir"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Alamat Rumah" />
+
+                <TextView
+                    android:id="@+id/alamatRumah"
+                    style="@style/TextContent"
+                    android:text="Alamat Rumah"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Kelurahan" />
+
+                <TextView
+                    android:id="@+id/kelurahanRumah"
+                    style="@style/TextContent"
+                    android:text="Kelurahan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Kecamatan" />
+
+                <TextView
+                    android:id="@+id/kecamatanRumah"
+                    style="@style/TextContent"
+                    android:text="Kecamatan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Kode Pos" />
+
+                <TextView
+                    android:id="@+id/kodePosRumah"
+                    style="@style/TextContent"
+                    android:text="Kode Pos"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/namaPasangan" />
+
+                <TextView
+                    android:id="@+id/namaPasangan"
+                    style="@style/TextContent"
+                    android:text="@string/namaPasangan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/jmlTanggungan" />
+
+                <TextView
+                    android:id="@+id/jmlTanggungan"
+                    style="@style/TextContent"
+                    android:text="@string/jmlTanggungan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/namaIbuKandung" />
+
+                <TextView
+                    android:id="@+id/namaIbuKandung"
+                    style="@style/TextContent"
+                    android:text="@string/namaIbuKandung"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/namaTempatUsaha" />
+
+                <TextView
+                    android:id="@+id/namaTempatUsaha"
+                    style="@style/TextContent"
+                    android:text="@string/namaTempatUsaha"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/alamatUsaha" />
+
+                <TextView
+                    android:id="@+id/alamatUsaha"
+                    style="@style/TextContent"
+                    android:text="@string/alamatUsaha"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/kelurahan" />
+
+                <TextView
+                    android:id="@+id/kelurahanUsaha"
+                    style="@style/TextContent"
+                    android:text="@string/kelurahan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/kecamatan" />
+
+                <TextView
+                    android:id="@+id/kecamatanUsaha"
+                    style="@style/TextContent"
+                    android:text="@string/kecamatan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/kodePos" />
+
+                <TextView
+                    android:id="@+id/kodePosUsaha"
+                    style="@style/TextContent"
+                    android:text="@string/kodePos"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/merk" />
+
+                <TextView
+                    android:id="@+id/merkTipe"
+                    style="@style/TextContent"
+                    android:text="@string/merk"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/warnaMobil" />
+
+                <TextView
+                    android:id="@+id/warnaMobil"
+                    style="@style/TextContent"
+                    android:text="@string/warnaMobil"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/dealerShowroom" />
+
+                <TextView
+                    android:id="@+id/dealerShowroom"
+                    style="@style/TextContent"
+                    android:text="@string/dealerShowroom"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/tanggalSurvey" />
+
+                <TextView
+                    android:id="@+id/tanggalSurvey"
+                    style="@style/TextContent"
+                    android:text="@string/tanggalSurvey"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="@string/jamSurvey" />
+
+                <TextView
+                    android:id="@+id/jamSurvey"
+                    style="@style/TextContent"
+                    android:text="@string/jamSurvey"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:text="Informasi Tambahan" />
+
+                <TextView
+                    android:id="@+id/informasiTambahan"
+                    style="@style/TextContent"
+                    android:text="Informasi Tambahan"
+                    android:textColor="@android:color/black" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>

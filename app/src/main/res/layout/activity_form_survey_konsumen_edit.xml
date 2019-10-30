@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragmentsCMO.Edit_Form_Survey.FormSurveyKonsumenEdit">
+
+<LinearLayout
+    style="@style/parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="9"
+            android:text="@string/surveyKonsumen"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanSatu" />
+
+        <Spinner
+            android:id="@+id/pertanyaanSatu"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanDua" />
+
+        <Spinner
+            android:id="@+id/pertanyaanDua"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanTiga" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/platNomor" />
+
+                <Spinner
+                    android:id="@+id/platNomor"
+                    style="@style/parent"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/merkTipe" />
+
+                <Spinner
+                    android:id="@+id/merkTipe"
+                    style="@style/parent"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/warna" />
+
+                <Spinner
+                    android:id="@+id/warna"
+                    style="@style/parent"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/tahunKendaraan" />
+
+                <Spinner
+                    android:id="@+id/tahunKendaraan"
+                    style="@style/parent"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanEmpat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/checkBoxJenisKredit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/jenisKredit" />
+
+            <EditText
+                android:id="@+id/jenisKredit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/checkBoxTotalAngsuran"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/TotalAngsuranPerbulan" />
+
+            <EditText
+                android:id="@+id/totalAngsuran"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/checkBoxTotalPenghasilan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/totalPenghasilan" />
+
+            <EditText
+                android:id="@+id/totalPenghasilan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanLima" />
+        <Spinner
+            android:id="@+id/pertanyaanLima"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/buttonSubmitSurveyKonsumen"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="SUBMIT" />
+
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

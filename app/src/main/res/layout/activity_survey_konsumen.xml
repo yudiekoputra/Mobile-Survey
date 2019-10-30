@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+tools:context=".fragmentsCMO.SurveyKonsumenActivity">
+
+    <LinearLayout
+        style="@style/parent"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:text="INFORMASI KONSUMEN"
+            android:textSize="24sp" />
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textNamaPasangan"-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginEnd="20dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/namaPasangan"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:hint="@string/namaPasangan"-->
+<!--                android:inputType="text"-->
+<!--                android:maxLines="1"-->
+<!--                android:textSize="15sp"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textJmlTanggungan"-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginEnd="20dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/jmlTanggungan"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:hint="@string/jmlTanggungan"-->
+<!--                android:inputType="text"-->
+<!--                android:maxLines="1"-->
+<!--                android:textSize="15sp"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textNamaIbuKandung"-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginEnd="20dp">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/namaIbuKandung"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:hint="@string/namaIbuKandung"-->
+<!--                android:inputType="text"-->
+<!--                android:maxLines="1"-->
+<!--                android:textSize="15sp"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <LinearLayout
+            style="@style/linearExpandTextVertical"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/pertanyaanSatu" />
+
+            <RadioGroup
+                android:id="@+id/pertanyaanSatu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Tersambung"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="Tidak Tersambung" />
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/linearExpandTextVertical"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/pertanyaanDua" />
+
+            <Spinner
+                android:id="@+id/pertanyaanDua"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            style="@style/linearExpandTextVertical"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/pertanyaanTiga" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorNavigationIcon" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/platNomor" />
+                    <RadioGroup
+                        android:id="@+id/platNomor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tahu"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Tidak Tahu"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorNavigationIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/merkTipe" />
+
+                    <RadioGroup
+                        android:id="@+id/merkTipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tahu"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Tidak Tahu"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorNavigationIcon" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/warna" />
+
+                    <RadioGroup
+                        android:id="@+id/warna"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tahu"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Tidak Tahu"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorNavigationIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/tahunKendaraan" />
+
+                    <RadioGroup
+                        android:id="@+id/tahunKendaraan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tahu"/>
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Tidak Tahu"/>
+                    </RadioGroup>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorNavigationIcon" />
+        <LinearLayout
+            style="@style/linearExpandTextVertical"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/pertanyaanEmpat" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textJenisKredit"
+                style="@style/parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/jenisKredit"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/jenisKredit"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textTotalAngsuran"
+                style="@style/parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/totalAngsuran"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/TotalAngsuranPerbulan"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textTotalPenghasilan"
+                style="@style/parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/totalPenghasilan"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/totalPenghasilan"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/linearExpandTextVertical"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="@string/pertanyaanLima" />
+            <Spinner
+                android:id="@+id/pertanyaanLima"
+                style="@style/parent"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/BarTextOnly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryTextColor"
+                android:text="Foto KTP &amp; Selfie Konsumen dengan KTP"
+                android:textColor="@color/warnaPutih" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/imageKtp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_photo_camera"
+                    android:padding="5dp"/>
+                <ImageView
+                    android:id="@+id/imageKtpSelfie"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_photo_camera"
+                    android:padding="5dp"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/buttonCamera9"
+                style="@style/loginButton"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Camera" />
+            <Button
+                android:id="@+id/buttonCamera10"
+                style="@style/loginButton"
+                android:visibility="gone"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Camera" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/BarTextOnly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primaryTextColor"
+                android:text="Foto Selfie CMO dengan Konsumen &amp; CMO depan Rumah Konsumen"
+                android:textColor="@color/warnaPutih" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/imageSelfieCmoKonsumen"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_photo_camera"
+                    android:padding="5dp"/>
+                <ImageView
+                    android:id="@+id/imageSelfieCmoRumah"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_photo_camera"
+                    android:padding="5dp"/>
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progress="0"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/buttonCamera11"
+                style="@style/loginButton"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Camera" />
+            <Button
+                android:id="@+id/buttonCamera12"
+                style="@style/loginButton"
+                android:visibility="gone"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Camera" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/linearExpandText"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/buttonBack"
+                style="@style/loginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="BACK" />
+
+            <Button
+                android:id="@+id/buttonSubmitSurveyKonsumen"
+                style="@style/loginButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="SUBMIT" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

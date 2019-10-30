@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".fragmentsCMO.Edit_Form_Survey.FormSurveyRumahKonsumenEdit">
+
+<LinearLayout
+    style="@style/parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="9"
+            android:text="@string/surveyRumahKonsumen"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanEnam" />
+
+        <Spinner
+            android:id="@+id/pertanyaanEnam"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanTujuh" />
+
+        <Spinner
+            android:id="@+id/pertanyaanTujuh"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanDelapan" />
+        <Spinner
+            android:id="@+id/pertanyaanDelapan"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanSembilan" />
+
+        <Spinner
+            android:id="@+id/pertanyaanSembilan"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanSepuluh" />
+        <Spinner
+            android:id="@+id/pertanyaanSepuluh"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanSebelas" />
+        <Spinner
+            android:id="@+id/pertanyaanSebelas"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanDuaBelas" />
+        <Spinner
+            android:id="@+id/pertanyaanDuaBelas"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/linearExpandTextVertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/viewParent.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="@string/pertanyaanTigaBelas" />
+        <Spinner
+            android:id="@+id/pertanyaanTigaBelas"
+            style="@style/parent"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/buttonSubmitSurveyRumahKonsumen"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="SUBMIT" />
+
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

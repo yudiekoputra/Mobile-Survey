@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "190827621247",
+    "firebase_url": "https://helpful-helper-248906.firebaseio.com",
+    "project_id": "helpful-helper-248906",
+    "storage_bucket": "helpful-helper-248906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190827621247:android:04b92baf40575635",
+        "android_client_info": {
+          "package_name": "com.bcafinance.itdp.mobilesurvey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190827621247-55vv387shtinncvdv7rtpg2bdrhbb24c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bcafinance.itdp.mobilesurvey",
+            "certificate_hash": "1a46d53c234094304a21a7de55832eb83630b1d0"
+          }
+        },
+        {
+          "client_id": "190827621247-30ha9o76ejl5tf4rdklb5kvihvbisaur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdaSvAWnOjWtpPKqqbq7OMC82zpRWKoIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190827621247-30ha9o76ejl5tf4rdklb5kvihvbisaur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

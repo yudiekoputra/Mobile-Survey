@@ -1,0 +1,178 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="loginParent" parent="parent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/loginBkColor</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="linearParent" parent="parent">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="headerText" parent="parent">
+        <item name="android:textSize">@dimen/headerTextSize</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="headerTextPrimary" parent="headerText">
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+    <style name="viewParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="loginButton" parent="viewParent">
+        <item name="android:background">@drawable/custom_button_bulat</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">@dimen/newsMoreTextSize</item>
+        <item name="android:backgroundTint">@color/primaryTextColor</item>
+    </style>
+
+    <!--full screen mode-->
+
+    <style name="Fullscreensetengah" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+    </style>
+
+    <style name="cobaNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/primaryTextColor</item>
+    </style>
+
+    <style name="expandBarText" parent="parent">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@color/primaryTextColor</item>
+        <item name="android:drawableRight">@drawable/ic_arrow_drop_down</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+    </style>
+
+    <style name="BarTextOnly" parent="parent">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@color/primaryTextColor</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+    </style>
+
+    <style name="textJudul" parent="parent">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textSelamatDatang" parent="parent">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="expandLayout" parent="parent">
+        <item name="android:layout_height">700dp</item>
+        <item name="android:background">@color/warnaPutih</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="linearExpandText" parent="parent">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="linearExpandTextVertical" parent="parent">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="linearExpandSpinner" parent="parent">
+        <item name="android:layout_height">70dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="viewParent.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+    <style name="viewParent.TitikDua">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="viewParent.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_weight">7</item>
+    </style>
+
+    <style name="CustomDatePicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:calendarViewShown">false</item>
+        <item name="android:spinnersShown">true</item>
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorPrimaryDark">#550000</item>
+        <item name="colorAccent">#0000AA</item>
+    </style>
+
+
+    <!-- custom loading style-->
+    <style name="CustomLoadingStyle" parent="android:Theme.Holo.Dialog">
+        <item name="android:alertDialogStyle">@style/CustomProgressDialogStyle</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:textColor">@color/warnaBiru</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="CustomProgressDialogStyle">
+        <item name="android:bottomBright">@color/transparent</item>
+        <item name="android:bottomDark">@color/transparent</item>
+        <item name="android:bottomMedium">@color/transparent</item>
+        <item name="android:centerBright">@color/transparent</item>
+        <item name="android:centerDark">@color/transparent</item>
+        <item name="android:centerMedium">@color/transparent</item>
+        <item name="android:fullBright">@color/transparent</item>
+        <item name="android:fullDark">@color/transparent</item>
+        <item name="android:topBright">@color/transparent</item>
+        <item name="android:topDark">@color/transparent</item>
+    </style>
+
+    <style name="TextContent" parent="@style/TextAppearance.AppCompat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+</resources>

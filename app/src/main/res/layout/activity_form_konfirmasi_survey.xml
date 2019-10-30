@@ -1,0 +1,2111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragmentsCMO.FormKonfirmasiSurvey">
+    <LinearLayout
+        style="@style/parent"
+        android:orientation="vertical"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/textJudul"
+            android:textSize="@dimen/textJudul"
+            android:text="@string/labelFormSurvey"/>
+
+        <TextView
+            android:id="@+id/barExpandDataDiri"
+            style="@style/expandBarText"
+            android:text="@string/identitasKonsumen" />
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutExpandDataDiri"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/namaKonsumen" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/namaKonsumen"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/namaKonsumen"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/noKtp" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/noKTP"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/noKtp"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/tempatLahir" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/tempatLahir"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/tempatLahir"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/tanggalLahir" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/tanggalLahir"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/tanggalLahir"
+                    android:inputType="none" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="40dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/alamatRumah" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:layout_marginTop="10dp"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/alamatRumah"
+                    style="@style/viewParent.EditText"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/alamatRumah"
+                    android:inputType="textMultiLine"
+                    android:lines="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kelurahan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kelurahanRumah"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kelurahan"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kecamatan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kecamatanRumah"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kecamatan"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kodePos" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kodePosRumah"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kodePos"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/noTelp" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/noTelp"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/noTelp"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/namaPasangan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/namaPasangan"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/namaPasangan"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="Jml Tanggungan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/jmlTanggungan"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/jmlTanggungan"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/namaIbuKandung" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/namaIbuKandung"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/namaIbuKandung"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="Nama Usaha" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/namaTempatUsaha"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/namaTempatUsaha"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="40dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:layout_marginTop="10dp"
+                    android:text="Alamat Usaha" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:layout_marginTop="10dp"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/alamatUsaha"
+                    style="@style/viewParent.EditText"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:hint="@string/alamatUsaha"
+                    android:inputType="textMultiLine"
+                    android:lines="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kelurahan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kelurahanUsaha"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kelurahan"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kecamatan" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kecamatanUsaha"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kecamatan"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/kodePos" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/kodePosUsaha"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/kodePos"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/merk" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/merkMobil"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/merk"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/warnaMobil" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/warnaMobil"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/warnaMobil"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/dealerShowroom" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/dealerShowroom"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/dealerShowroom"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/tanggalSurvey" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/tanggalSurvey"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/tanggalSurvey"
+                    android:inputType="none" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_height="20dp">
+
+                <TextView
+                    style="@style/viewParent.TextView"
+                    android:text="@string/jamSurvey" />
+
+                <TextView
+                    style="@style/viewParent.TitikDua"
+                    android:text=":" />
+
+                <TextView
+                    android:id="@+id/jamSurvey"
+                    style="@style/viewParent.EditText"
+                    android:focusable="false"
+                    android:hint="@string/jamSurvey"
+                    android:inputType="datetime" />
+
+            </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/buttonEdit1"-->
+<!--                style="@style/loginButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="EDIT"-->
+<!--                android:layout_marginBottom="10dp"/>-->
+
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandSurveyKonsumen"
+            style="@style/expandBarText"
+            android:text="@string/surveyKonsumen" />
+
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutSurveyKonsumen"
+            style="@style/expandLayout"
+            android:layout_height="500dp"
+            app:ael_expanded="true"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:lines="2"
+                        android:text="@string/pertanyaanSatu" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanSatu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDua" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTiga" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/platNomor" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/platNomor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/merkTipe" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/merkTipe"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/warna" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/warna"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/tahunKendaraan" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/tahunKendaraan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanEmpat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/jenisKredit" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/jenisKredit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/TotalAngsuranPerbulan" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/totalAngsuran"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="@string/totalPenghasilan" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":" />
+
+                    <TextView
+                        android:id="@+id/totalPenghasilan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanLima" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanLima"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit2"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandSurveyRumahKonsumen"
+            style="@style/expandBarText"
+            android:text="@string/surveyRumahKonsumen"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutSurveyRumahKonsumen"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="410dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanEnam" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanEnam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTujuh" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTujuh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDelapan" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDelapan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanSembilan" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanSembilan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanSepuluh" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanSepuluh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanSebelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanSebelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit3"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandVerifikasiLingkunganRumah"
+            style="@style/expandBarText"
+            android:text="@string/verifikasiLingkunganRumah"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutVerifikasiLingunganRumah"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="880dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Nama Narasumber 1"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/namaNarasumber1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanEmpatBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanEmpatBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanLimaBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanLimaBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanEnamBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanEnamBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanEnamBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTujuhBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTujuhBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanTujuhBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDelapanBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDelapanBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/jawabanDelapanBelasTipe"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="5" />
+
+                        <TextView
+                            android:id="@+id/jawabanDelapanBelasWarna"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanSembilanBelas" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanSembilanBelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaPuluh" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaPuluh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaPuluh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Nama Narasumber 2"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/namaNarasumber2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaSatu" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaSatu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaDua" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaDua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaTiga" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaTiga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaTiga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaEmpat" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaEmpat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaEmpat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaLima" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaLima"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/jawabanDuaLimaTipe"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="5" />
+
+                        <TextView
+                            android:id="@+id/jawabanDuaLimaWarna"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaEnam" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaEnam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaTujuh" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaTujuh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaTujuh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit4"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandPengamatanSurveyor"
+            style="@style/expandBarText"
+            android:text="@string/hasilPengamatanUsaha"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutPengamatanSurveyor"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaDelapan" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanduaDelapan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaDelapan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanDuaSembilan" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanDuaSembilan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanDuaSembilan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaPuluh" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaPuluh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaSatu" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaSatu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+                </LinearLayout>
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit5"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandSurveyTempatUsaha"
+            style="@style/expandBarText"
+            android:text="@string/surveyTempatUsaha"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutSurveyTempatUsaha"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Nama Narasumber 1"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/namaNarasumber3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaDua" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaDua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanTigaDua"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaTiga" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaTiga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanTigaTiga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:text="Nama Narasumber 2"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=":"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/namaNarasumber4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:hint="Kosong"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaEmpat" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaEmpat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanTigaEmpat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/pertanyaanTigaLima" />
+
+                    <TextView
+                        android:id="@+id/pertanyaanTigaLima"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:hint="Kosong" />
+
+                    <TextView
+                        android:id="@+id/jawabanTigaLima"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit6"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandFoto"
+            style="@style/expandBarText"
+            android:text="@string/fotoRumah"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutFoto"
+            style="@style/expandLayout"
+            android:layout_height="700dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/BarTextOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryTextColor"
+                        android:text="Foto Kondisi Fisik Rumah"
+                        android:textColor="@color/warnaPutih" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/imageRumah1"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                        <ImageView
+                            android:id="@+id/imageRumah2"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/BarTextOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryTextColor"
+                        android:text="Foto Kondisi Jalan Depan Rumah"
+                        android:textColor="@color/warnaPutih" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/imageJalanRumah1"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                        <ImageView
+                            android:id="@+id/imageJalanRumah2"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat : "/>
+                    <TextView
+                        android:id="@+id/namaAlamatRumah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latitude : "/>
+                    <TextView
+                        android:id="@+id/latitude1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Longitude : "/>
+                    <TextView
+                        android:id="@+id/longitude1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"/>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/buttonMap1"
+                    style="@style/loginButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Open Map" />
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandFotoKantor"
+            style="@style/expandBarText"
+            android:text="@string/fotoKantor"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutFotoKantor"
+            style="@style/expandLayout"
+            android:layout_height="700dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/BarTextOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryTextColor"
+                        android:text="Foto Kondisi Fisik Usaha/Kantor"
+                        android:textColor="@color/warnaPutih" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageUsaha1"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            app:srcCompat="@drawable/ic_photo_camera" />
+                        <ImageView
+                            android:id="@+id/imageUsaha2"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/BarTextOnly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryTextColor"
+                        android:text="Foto Kondisi Jalan Depan Usaha/Kantor"
+                        android:textColor="@color/warnaPutih" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/imageJalanUsaha1"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                        <ImageView
+                            android:id="@+id/imageJalanUsaha2"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_photo_camera"
+                            android:padding="5dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat : "/>
+                    <TextView
+                        android:id="@+id/namaAlamatKantor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latitude : "/>
+                    <TextView
+                        android:id="@+id/latitude2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Longitude : "/>
+                    <TextView
+                        android:id="@+id/longitude2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"/>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/buttonMap2"
+                    style="@style/loginButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Open Google" />
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+        <TextView
+            android:id="@+id/barExpandInformasiTambahan"
+            style="@style/expandBarText"
+            android:text="@string/informasiTambahan"/>
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+            android:id="@+id/layoutInformasiTambahan"
+            style="@style/expandLayout"
+            android:layout_height="900dp"
+            app:ael_expanded="false"
+            app:ael_interpolator="accelerate"
+            app:ael_orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/informasiTambahanText" />
+
+                    <TextView
+                        android:id="@+id/informasiTambahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="25"
+                        android:focusable="false"
+                        android:hint="kosong"
+                        android:inputType="textMultiLine" />
+
+                </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/buttonEdit7"-->
+<!--                    style="@style/loginButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="EDIT" />-->
+            </LinearLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="20dp">
+
+        <Button
+            android:id="@+id/buttonReject"
+            style="@style/loginButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/colorAccent"
+            android:shadowRadius="10"
+            android:visibility="gone"
+            android:text="REJECT" />
+        <Button
+            android:id="@+id/buttonApprove"
+            style="@style/loginButton"
+            android:layout_marginTop="10dp"
+            android:text="APPROVE"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
