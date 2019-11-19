@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".fragmentsCMO.ViewSurveyActivity"
@@ -46,10 +47,10 @@
             android:label="@string/title_activity_get_maps_address"
             android:screenOrientation="portrait"
             android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormInformasiTambahanEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormInformasiTambahanEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -58,38 +59,38 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyLingkunganUsahaEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormPengamatanSurveyorEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormVerifikasiLingkunganRumahEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyRumahKonsumenEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyKonsumenEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.Edit_Form_Survey.FormIdentitasKonsumenEdit"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.FormVerifikasiLingkunganRumah"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
-        <activity
-            android:name=".fragmentsCMO.FormKonfirmasiSurvey"
-            android:screenOrientation="portrait"
-            android:theme="@style/cobaNoActionBar" />
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyLingkunganUsahaEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormPengamatanSurveyorEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormVerifikasiLingkunganRumahEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyRumahKonsumenEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormSurveyKonsumenEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.Edit_Form_Survey.FormIdentitasKonsumenEdit"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.FormVerifikasiLingkunganRumah"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
+<!--        <activity-->
+<!--            android:name=".fragmentsCMO.FormKonfirmasiSurvey"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/cobaNoActionBar" />-->
         <activity
             android:name=".fragmentsCMO.ProfileActivity"
             android:screenOrientation="portrait"

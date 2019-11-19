@@ -43,23 +43,16 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = this;
     private static final String TAG = "LoginActivity";
-    private DatabaseReference mDatabase;
     private EditText nip, password;
     private CheckBox rememberme;
     private Button buttonLogin;
-    private FirebaseAuth mAuth;
-    private int RC_SIGN_IN = 1;
-    private RequestAPIServices apiServices;
+    RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         apiServices = APIUtilities.getAPIServices();
-
-        //memanggil fungsi
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
 
         nip = findViewById(R.id.nip);
         password = findViewById(R.id.password);
@@ -71,49 +64,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn(){
-//        Log.d(TAG, "signIn");
-//        if (!validateForm()){
-//            return;
-//        }
-
-//        String nipValue = nip.getText().toString();
         String usernameValue = nip.getText().toString();
         String pwdValue = password.getText().toString();
         final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
 
-        apiServices.loginRequest(nip.getText().toString(), password.getText().toString())
+        apiServices.loginRequest(nip.getText().toString(), password.getText().toString(), "password")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()) {
-                            loading.dismiss();
-                            try {
-                                JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                                if (jsonRESULTS.getString("error").equals("false")) {
-                                    Toast.makeText(context, "Berhasil Login", Toast.LENGTH_SHORT).show();
-                                    String nama = jsonRESULTS.getJSONObject("user").getString("nama");
-                                    if (nama.equalsIgnoreCase("cmo")){
-                                        Intent intent = new Intent(context, HomeCMOActivity.class);
+                        loading.dismiss();
+                        if (response.code()==200) {
+                            Intent intent = new Intent(context, HomeCMOActivity.class);
                                         startActivity(intent);
-                                        finish();
-                                    }else if(nama.equalsIgnoreCase("bm")){
-                                        Intent intent = new Intent(context, HomeBMActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }else if (nama.equalsIgnoreCase("rm")){
-                                        Intent intent = new Intent(context, HomeRMActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                } else {
-                                    String error_message = jsonRESULTS.getString("error_msg");
-                                    Toast.makeText(context, error_message, Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
                         }else {
                             loading.dismiss();
                         }
@@ -125,83 +87,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         loading.dismiss();
                     }
                 });
-
-//        mAuth.signInWithEmailAndPassword(nipValue, pwdValue)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        Log.d(TAG, "signIn:onComplete:"+task.isSuccessful());
-//
-//                        if (task.isSuccessful()){
-//                            onAuthSuccess(task.getResult().getUser());
-//                        }else{
-//                            Toast.makeText(context, "Sign In Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
             //save data login
             SessionManager.saveDataLogin(context, usernameValue, pwdValue, rememberme.isChecked());
 
             //save login flag
             SessionManager.saveLoginFlag(context, true);
     }
-
-//    public void onAuthSuccess(FirebaseUser user){
-//        String username = usernameFromEmail(user.getEmail());
-//        System.out.println(username);
-//        SessionManager.saveUsername(context, username);
-//
-//        writeNewAdmin(user.getUid(), username, user.getEmail());
-//
-//        if (username.equalsIgnoreCase("cmo")){
-//            Intent intent = new Intent(context, HomeCMOActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }else if(username.equalsIgnoreCase("bm")){
-//            Intent intent = new Intent(context, HomeBMActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }else if (username.equalsIgnoreCase("rm")){
-//            Intent intent = new Intent(context, HomeRMActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//
-//    }
-
-    //fungsi mengambil nama di depan @ email
-//    private String usernameFromEmail(String email){
-//        if(email.contains("@")){
-//            return email.split("@")[0];
-//        }else{
-//            return email;
-//        }
-//    }
-
-//    private boolean validateForm(){
-//        boolean result = true;
-//        if(TextUtils.isEmpty(nip.getText().toString())){
-//            nip.setError("Required");
-//            result = false;
-//        }else {
-//            nip.setError(null);
-//        }
-//        if (TextUtils.isEmpty(password.getText().toString())){
-//            password.setError("Required");
-//            result = false;
-//        }else {
-//            password.setError(null);
-//        }
-//
-//        return result;
-//    }
-
-    // menulis ke Database
-//    private void writeNewAdmin(String userId, String name, String nip) {
-//        Admin admin = new Admin(name, nip);
-//
-//        mDatabase.child("admins").child(userId).setValue(admin);
-//    }
 
     private void checkRememberMe(){
         if(SessionManager.getRemember(context)){
@@ -223,47 +114,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int i = v.getId();
         if(i == R.id.buttonLogin){
             signIn();
-//            requestLogin();
         }
     }
-
-    private void requestLogin(){
-//        mApiService.
-    }
 }
-
-//    private void validasiInput(){
-//        String NIPValue = nip.getText().toString();
-//        String pwdValue = password.getText().toString();
-//
-//        if(NIPValue.length()==0 || NIPValue.equalsIgnoreCase("")){
-//            Toast.makeText(context,"Anda belum mengisi NIP", Toast.LENGTH_SHORT).show();
-//        }else if(pwdValue.length()==0 || pwdValue.equalsIgnoreCase("")){
-//            Toast.makeText(context, "Anda belum mengisi password", Toast.LENGTH_SHORT).show();
-//        }else{
-//            //check remember me atau tidak
-//            if(rememberme.isChecked()){
-//                System.out.println("Remember Me");
-//
-//                //simpan flag remember beserta username & password ke
-//            }else{
-//                System.out.println("Tanpa Remember Me");
-//            }
-//
-//            //save data login
-//            SessionManager.saveDataLogin(context, NIPValue, pwdValue, rememberme.isChecked());
-//
-//            //save login flag
-//            SessionManager.saveLoginFlag(context, true);
-//
-//            //login now
-//            Intent intent = new Intent(context, HomeMenuActivity.class);
-//
-//            //bawa NIP
-//            intent.putExtra(Constanta.ID_EXTRA_NIP, NIPValue);
-//
-//            startActivity(intent);
-//            finish();
-//        }
-//
-//    }

@@ -29,8 +29,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 //cek flag login
                 if(SessionManager.cekLoginFlag(context)){
                     //sudah login
-                    skipKeHomeActivity();
-//                    pindahKeLoginActivity();
+//                    skipKeHomeActivity();
+                    pindahKeLoginActivity();
                 }else{
                     pindahKeLoginActivity();
 

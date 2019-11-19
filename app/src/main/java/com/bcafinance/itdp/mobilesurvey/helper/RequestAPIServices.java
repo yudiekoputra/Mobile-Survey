@@ -9,20 +9,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface RequestAPIServices {
-//contoh dari BCAITDP
-    //deklarasikan semua mthod yang berhubungan dengan API request
-
-    //untuk memanggil list user
-//    @GET("users")
-//    Call<ListUserModel> getListUser(@Query("page")int page);
     @FormUrlEncoded
-    @POST("api/Users/Mobile")
-    Call<ResponseBody> loginRequest(@Field("username") String username,
-                                    @Field("password") String password);
-
-    //ini untuk create user baru
-//    @FormUrlEncoded
-//    @POST("users")
-//    Call<CreateUser> createUser(@Field("name") String name, @Field("job") String job);
+    @POST("api/login")
+    Call<ResponseBody>loginRequest(@Field("username") String username,
+                                   @Field("password") String password,
+                                   @Field("grant_type")String grant_type);
 
 }
