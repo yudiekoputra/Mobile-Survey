@@ -34,6 +34,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -69,22 +72,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
 
         apiServices.loginRequest(nip.getText().toString(), password.getText().toString(), "password")
-                .enqueue(new Callback<ResponseBody>() {
+                .enqueue(new Callback<ResponseLogin>() {
                     @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                         loading.dismiss();
                         if (response.code()==200) {
-                            Intent intent = new Intent(context, HomeCMOActivity.class);
-                                        startActivity(intent);
+                            ResponseLogin newResponse = response.body();
+                            String user = newResponse.getUser();
+                            String position = newResponse.getPosition();
+                            if (position.equals("MO")){
+                                Intent intent = new Intent(context, HomeCMOActivity.class);
+                                startActivity(intent);
+                            }else if (position.equals("BM")){
+                                Intent intent = new Intent(context, HomeBMActivity.class);
+                                startActivity(intent);
+                            }else if (position.equals("RM")){
+                                Intent intent = new Intent(context, HomeRMActivity.class);
+                                startActivity(intent);
+                            }
                         }else {
-                            loading.dismiss();
+                            Toast.makeText(context, "Username or Password is incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+                    public void onFailure(Call<ResponseLogin> call, Throwable t) {
                         loading.dismiss();
+                        Log.e("debug", "onFailure: ERROR > " + t.toString());
                     }
                 });
             //save data login
@@ -108,8 +122,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
-        loading.show();
 
         int i = v.getId();
         if(i == R.id.buttonLogin){

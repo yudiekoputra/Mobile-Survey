@@ -15,9 +15,12 @@ import android.widget.Toast;
 
 import com.bcafinance.itdp.mobilesurvey.LoginActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
+import com.bcafinance.itdp.mobilesurvey.ResponseLogin;
 import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.HistoryCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.InputSurveyActivity;
 import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.ProfileActivity;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 
@@ -30,16 +33,19 @@ public class HomeCMOActivity extends AppCompatActivity {
     private ImageButton imageLogOut;
     private int counter_back = 1;
     private CardView buttonInputForm, buttonHistory, buttonProfile;
+    private ResponseLogin responseLogin;
+    private RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home);
+//        apiServices = APIUtilities.getAPIServices();
 
         username = findViewById(R.id.username);
-        String text = SessionManager.getUsername(context);
-//        String text = SessionManager.getNIP(context);
-        username.setText(text);
+//        final ResponseLogin text = responseLogin;
+//        String text = responseLogin.getUser();
+        username.setText(responseLogin.getUser());
 
         buttonInputForm = findViewById(R.id.buttonInputForm);
         buttonInputForm.setOnClickListener(new View.OnClickListener() {

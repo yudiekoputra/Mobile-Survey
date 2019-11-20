@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     // Places library
-    implementation 'com.google.android.libraries.places:places:2.0.0'
+    implementation 'com.google.android.libraries.places:places:2.1.0'
     // PING Place Picker
     implementation 'com.github.rtchagas:pingplacepicker:1.1.0'
     //cicle image
@@ -84,6 +84,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.3'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
 
     implementation 'com.synnapps:carouselview:0.1.5'
 }
