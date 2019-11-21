@@ -45,8 +45,8 @@ public class HomeRMActivity extends AppCompatActivity {
             setContentView(R.layout.activity_home_rm);
 
             username = findViewById(R.id.username);
-            String text = SessionManager.getUsername(context);
-//        String text = SessionManager.getNIP(context);
+            Bundle extra = getIntent().getExtras();
+            String text = extra.getString("position");
             username.setText(text);
 
 

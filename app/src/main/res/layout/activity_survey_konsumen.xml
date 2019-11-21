@@ -21,52 +21,6 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
             android:text="INFORMASI KONSUMEN"
             android:textSize="24sp" />
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textNamaPasangan"-->
-<!--            style="@style/parent"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginEnd="20dp">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/namaPasangan"-->
-<!--                style="@style/modifiedEditText"-->
-<!--                android:hint="@string/namaPasangan"-->
-<!--                android:inputType="text"-->
-<!--                android:maxLines="1"-->
-<!--                android:textSize="15sp"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textJmlTanggungan"-->
-<!--            style="@style/parent"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginEnd="20dp">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/jmlTanggungan"-->
-<!--                style="@style/modifiedEditText"-->
-<!--                android:hint="@string/jmlTanggungan"-->
-<!--                android:inputType="text"-->
-<!--                android:maxLines="1"-->
-<!--                android:textSize="15sp"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textNamaIbuKandung"-->
-<!--            style="@style/parent"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginEnd="20dp">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/namaIbuKandung"-->
-<!--                style="@style/modifiedEditText"-->
-<!--                android:hint="@string/namaIbuKandung"-->
-<!--                android:inputType="text"-->
-<!--                android:maxLines="1"-->
-<!--                android:textSize="15sp"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
         <LinearLayout
             style="@style/linearExpandTextVertical"
             android:layout_marginTop="10dp"
@@ -482,27 +436,63 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                 android:text="Camera" />
         </LinearLayout>
         <LinearLayout
-            style="@style/linearExpandText"
-            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="20dp">
-
-            <Button
-                android:id="@+id/buttonBack"
-                style="@style/loginButton"
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/viewParent.TextView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="BACK" />
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Silahkan Pilih Survey yang ingin dikunjungi" />
+            <RadioGroup
+                android:id="@+id/pilihSurvey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/surveyRumah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="Survey Rumah"/>
 
-            <Button
-                android:id="@+id/buttonSubmitSurveyKonsumen"
-                style="@style/loginButton"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="SUBMIT" />
+                <RadioButton
+                    android:id="@+id/surveyUsaha"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="Survey Usaha/Kantor" />
 
+            </RadioGroup>
+
+            <LinearLayout
+                style="@style/linearExpandText"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttonBack"
+                    style="@style/loginButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="BACK" />
+
+                <Button
+                    android:id="@+id/buttonSubmitSurveyKonsumen"
+                    style="@style/loginButton"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="SUBMIT" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

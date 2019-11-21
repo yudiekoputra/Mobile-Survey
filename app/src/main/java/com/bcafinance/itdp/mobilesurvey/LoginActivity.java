@@ -24,6 +24,7 @@ import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,17 +78,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                         loading.dismiss();
                         if (response.code()==200) {
+                            List<ResponseLogin>token = new ArrayList<>();
                             ResponseLogin newResponse = response.body();
-                            String user = newResponse.getUser();
                             String position = newResponse.getPosition();
                             if (position.equals("MO")){
                                 Intent intent = new Intent(context, HomeCMOActivity.class);
+                                intent.putExtra("position", "CMO");
                                 startActivity(intent);
                             }else if (position.equals("BM")){
                                 Intent intent = new Intent(context, HomeBMActivity.class);
+                                intent.putExtra("position", "BM");
                                 startActivity(intent);
                             }else if (position.equals("RM")){
                                 Intent intent = new Intent(context, HomeRMActivity.class);
+                                intent.putExtra("position", "RM");
                                 startActivity(intent);
                             }
                         }else {

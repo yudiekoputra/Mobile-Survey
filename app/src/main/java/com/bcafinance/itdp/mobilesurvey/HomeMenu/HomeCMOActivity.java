@@ -24,6 +24,8 @@ import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,19 +35,20 @@ public class HomeCMOActivity extends AppCompatActivity {
     private ImageButton imageLogOut;
     private int counter_back = 1;
     private CardView buttonInputForm, buttonHistory, buttonProfile;
-    private ResponseLogin responseLogin;
-    private RequestAPIServices apiServices;
+    ResponseLogin responseLogin;
+    RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home);
-//        apiServices = APIUtilities.getAPIServices();
+        apiServices = APIUtilities.getAPIServices();
 
         username = findViewById(R.id.username);
 //        final ResponseLogin text = responseLogin;
-//        String text = responseLogin.getUser();
-        username.setText(responseLogin.getUser());
+        Bundle extra = getIntent().getExtras();
+        String text = extra.getString("position");
+        username.setText(text);
 
         buttonInputForm = findViewById(R.id.buttonInputForm);
         buttonInputForm.setOnClickListener(new View.OnClickListener() {

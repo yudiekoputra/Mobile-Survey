@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -47,10 +48,11 @@ import java.util.UUID;
 public class SurveyKonsumenActivity extends AppCompatActivity {
     private Context context = this;
     private Spinner pertanyaanDua, pertanyaanLima;
-    private RadioGroup pertanyaanSatu, platNomor, merkTipe, warna, tahunKendaraan;
+    private RadioGroup pertanyaanSatu, platNomor, merkTipe, warna, tahunKendaraan, pilihSurvey;
     private EditText namaPasangan, jmlTanggungan, namaIbuKandung, jenisKredit, totalAngsuran, totalPenghasilan;
     private Button buttonSubmitSurveyKonsumen, buttonBack, buttonCamera9, buttonCamera10, buttonCamera11, buttonCamera12;
     private ImageView imageKtp, imageKtpSelfie, imageSelfieCmoKonsumen, imageSelfieCmoRumah;
+    private RadioButton surveyRumah, surveyUsaha;
 
     private int REQUEST_CODE_CAMERA9 = 9;
     private int REQUEST_CODE_CAMERA10 = 10;
@@ -65,14 +67,10 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_konsumen);
-        reference = FirebaseStorage.getInstance().getReference();
-        dbase = FirebaseDatabase.getInstance().getReference();
+//        reference = FirebaseStorage.getInstance().getReference();
+//        dbase = FirebaseDatabase.getInstance().getReference();
         progressBar = findViewById(R.id.progressBar);
 
-
-//        namaPasangan = findViewById(R.id.namaPasangan);
-//        jmlTanggungan = findViewById(R.id.jmlTanggungan);
-//        namaIbuKandung = findViewById(R.id.namaIbuKandung);
 
         pertanyaanSatu = findViewById(R.id.pertanyaanSatu);
         pertanyaanDua = findViewById(R.id.pertanyaanDua);
@@ -84,6 +82,9 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         totalAngsuran = findViewById(R.id.totalAngsuran);
         totalPenghasilan = findViewById(R.id.totalPenghasilan);
         pertanyaanLima = findViewById(R.id.pertanyaanLima);
+        pilihSurvey = findViewById(R.id.pilihSurvey);
+        surveyRumah = findViewById(R.id.surveyRumah);
+        surveyUsaha = findViewById(R.id.surveyUsaha);
 
         imageKtp = findViewById(R.id.imageKtp);
         imageKtp.setOnClickListener(v -> imageClick9());
@@ -113,7 +114,16 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         buttonSubmitSurveyKonsumen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveSurveyKonsumen();
+                if (surveyRumah.isChecked()){
+                    Intent intent = new Intent(context, SurveyRumahActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(context, SurveyUsahaActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+//                saveSurveyKonsumen();
             }
         });
         buttonBack = findViewById(R.id.buttonBack);
@@ -129,30 +139,38 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         setSpinnerData();
 
     }
+
     private void saveSurveyKonsumen(){
-        String pertanyaanSatuValue = ((RadioButton)findViewById(pertanyaanSatu.getCheckedRadioButtonId())).getText().toString();
-        String pertanyaanDuaValue = pertanyaanDua.getSelectedItem().toString();
-        String platNomorValue = ((RadioButton)findViewById(platNomor.getCheckedRadioButtonId())).getText().toString();
-        String merkTipeValue = ((RadioButton)findViewById(merkTipe.getCheckedRadioButtonId())).getText().toString();
-        String warnaValue = ((RadioButton)findViewById(warna.getCheckedRadioButtonId())).getText().toString();
-        String tahunKendaraanValue = ((RadioButton)findViewById(tahunKendaraan.getCheckedRadioButtonId())).getText().toString();
-        String jenisKreditValue = jenisKredit.getText().toString();
-        String totalAngsuranValue = totalAngsuran.getText().toString();
-        String totalPenghasilanValue = totalPenghasilan.getText().toString();
-        String pertanyaanLimaValue = pertanyaanLima.getSelectedItem().toString();
-
-        SessionManager.saveSurveyKonsumen(context, pertanyaanSatuValue, pertanyaanDuaValue, platNomorValue, merkTipeValue, warnaValue,
-                tahunKendaraanValue, jenisKreditValue, totalAngsuranValue, totalPenghasilanValue, pertanyaanLimaValue);
-
-        uploadImage9();
-        uploadImage10();
-        uploadImage11();
-        uploadImage12();
+//        String pertanyaanSatuValue = ((RadioButton)findViewById(pertanyaanSatu.getCheckedRadioButtonId())).getText().toString();
+//        String pertanyaanDuaValue = pertanyaanDua.getSelectedItem().toString();
+//        String platNomorValue = ((RadioButton)findViewById(platNomor.getCheckedRadioButtonId())).getText().toString();
+//        String merkTipeValue = ((RadioButton)findViewById(merkTipe.getCheckedRadioButtonId())).getText().toString();
+//        String warnaValue = ((RadioButton)findViewById(warna.getCheckedRadioButtonId())).getText().toString();
+//        String tahunKendaraanValue = ((RadioButton)findViewById(tahunKendaraan.getCheckedRadioButtonId())).getText().toString();
+//        String jenisKreditValue = jenisKredit.getText().toString();
+//        String totalAngsuranValue = totalAngsuran.getText().toString();
+//        String totalPenghasilanValue = totalPenghasilan.getText().toString();
+//        String pertanyaanLimaValue = pertanyaanLima.getSelectedItem().toString();
+//
+//        SessionManager.saveSurveyKonsumen(context, pertanyaanSatuValue, pertanyaanDuaValue, platNomorValue, merkTipeValue, warnaValue,
+//                tahunKendaraanValue, jenisKreditValue, totalAngsuranValue, totalPenghasilanValue, pertanyaanLimaValue);
+//
+//        uploadImage9();
+//        uploadImage10();
+//        uploadImage11();
+//        uploadImage12();
 //        Intent intent = new Intent(context, FormSurveyRumahKonsumen.class);
-        Intent intent = new Intent(context, InputSurveyActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
+//        View view = null;
+
+//        else if (){
+//            Intent intent = new Intent(context, SurveyRumahActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }else if (pilihSurvey.getCheckedRadioButtonId()==1){
+//            Intent intent = new Intent(context, SurveyUsahaActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
     }
 
     private void setSpinnerData() {
