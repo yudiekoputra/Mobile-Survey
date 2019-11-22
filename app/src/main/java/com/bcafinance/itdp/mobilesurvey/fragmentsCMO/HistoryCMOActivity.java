@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeBMActivity;
+import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
+import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeRMActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
 import com.bcafinance.itdp.mobilesurvey.utility.ListAdapter;
+import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.bcafinance.itdp.mobilesurvey.utility.inputSurvey;
 //import com.bcafinance.itdp.mobilesurvey.utility.input_survey;
 import com.google.firebase.auth.FirebaseAuth;
@@ -83,5 +88,27 @@ public class HistoryCMOActivity extends AppCompatActivity {
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
         itemDecoration.setDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.line));
         recyclerView.addItemDecoration(itemDecoration);
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        backKeHome();
+    }
+
+    private void backKeHome(){
+//        Bundle extra = getIntent().getExtras();
+        String text = SessionManager.getPosition(context);
+        if (text.equals("CMO")){
+            Intent intent = new Intent(context, HomeCMOActivity.class);
+            startActivity(intent);
+        }else if (text.equals("BM")) {
+            Intent intent = new Intent(context, HomeBMActivity.class);
+            startActivity(intent);
+        }else if (text.equals("RM")) {
+            Intent intent = new Intent(context, HomeRMActivity.class);
+            startActivity(intent);
+        }
+        finish();
     }
 }

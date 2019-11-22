@@ -46,8 +46,8 @@ public class HomeCMOActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
 //        final ResponseLogin text = responseLogin;
-        Bundle extra = getIntent().getExtras();
-        String text = extra.getString("position");
+//        Bundle extra = getIntent().getExtras();
+        String text = SessionManager.getPosition(context);
         username.setText(text);
 
         buttonInputForm = findViewById(R.id.buttonInputForm);
@@ -57,7 +57,7 @@ public class HomeCMOActivity extends AppCompatActivity {
 //                Intent intent = new Intent(context, FormIdentitasKonsumenActivity.class);
                 Intent intent = new Intent(context, InputSurveyActivity.class);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         });
         imageLogOut = findViewById(R.id.imageLogOut);
@@ -75,6 +75,7 @@ public class HomeCMOActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, HistoryCMOActivity.class);
 //                Intent intent = new Intent(context, HistoryCMOActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -84,7 +85,7 @@ public class HomeCMOActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
                 startActivity(intent);
-//                finish();
+                finish();
             }
         });
 

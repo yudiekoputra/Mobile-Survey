@@ -15,21 +15,6 @@ public class SessionManager {
     protected static SharedPreferences.Editor retrieveSharedPreferencesEditor(Context context){
         return retrieveSharedPreferences(context).edit();
     }
-//set pref spinner belum bisa
-//    protected static SharedPreferences sharedPreferencesSpinner(Context context){
-//        return context.getSharedPreferences(Constanta.SHARED_PREFERENCES_NAME_INT, 0);
-//    }
-//
-//    protected static SharedPreferences.Editor sharedPreferencesSpinnerEditor (Context context){
-//        return sharedPreferencesSpinner(context).edit();
-//    }
-
-//save spinner belum bisa
-//    public static  void saveDataSpinner1(Context context, int pertanyaanSatu){
-//        SharedPreferences.Editor editor = sharedPreferencesSpinnerEditor(context);
-//        editor.putInt("pertanyaanSatu", pertanyaanSatu);
-//        editor.commit();
-//    }
 
     /*getter & setter
     definisikan fungsi getter & setter sesuai keperluan aplikasi
@@ -46,6 +31,11 @@ public class SessionManager {
     public static void saveUsername(Context context, String username){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
         editor.putString(Constanta.KEY_USERNAME, username);
+        editor.commit();
+    }
+    public static void savePosition(Context context, String position){
+        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
+        editor.putString(Constanta.POSITION, position);
         editor.commit();
     }
 
@@ -211,31 +201,6 @@ public class SessionManager {
         editor.commit();
     }
 
-    public static void saveInformasiTambahan(Context context, String informasiTambahan){
-        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.INFORMASITAMBAHAN, informasiTambahan);
-
-        editor.commit();
-    }
-
-    public static void saveFotoRumah(Context context, String namaAlamatRumah, String latitude1, String longitude1){
-        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.NAMAALAMATRUMAH, namaAlamatRumah);
-        editor.putString(Constanta.LATITUDE1, latitude1);
-        editor.putString(Constanta.LONGITUDE1, longitude1);
-
-        editor.commit();
-    }
-
-    public static void saveFotoKantor(Context context, String namaAlamatKantor, String latitude2, String longitude2){
-        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.NAMAALAMATKANTOR, namaAlamatKantor);
-        editor.putString(Constanta.LATITUDE2, latitude2);
-        editor.putString(Constanta.LONGITUDE2, longitude2);
-
-        editor.commit();
-    }
-
     //save flag login
     public static void saveLoginFlag(Context context, boolean login){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
@@ -253,6 +218,10 @@ public class SessionManager {
 
     public static String getUsername(Context context){
         return retrieveSharedPreferences(context).getString(Constanta.KEY_USERNAME, "");
+    }
+
+    public static String getPosition(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.POSITION, "");
     }
 
     //ambil username

@@ -17,4 +17,9 @@ public interface RequestAPIServices {
                                     @Field("password") String password,
                                     @Field("grant_type")String grant_type);
 
+    @FormUrlEncoded
+    @POST("API/AddKonsumen")
+    Call<AddKonsumen>addKonsumen(@Field("userid") String userId,
+                                 @Field("MobileID") String mobileID);
+
 }

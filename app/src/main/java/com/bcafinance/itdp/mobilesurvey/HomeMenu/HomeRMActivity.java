@@ -45,8 +45,8 @@ public class HomeRMActivity extends AppCompatActivity {
             setContentView(R.layout.activity_home_rm);
 
             username = findViewById(R.id.username);
-            Bundle extra = getIntent().getExtras();
-            String text = extra.getString("position");
+//            Bundle extra = getIntent().getExtras();
+            String text = SessionManager.getPosition(context);
             username.setText(text);
 
 
@@ -65,6 +65,7 @@ public class HomeRMActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, HistoryCMOActivity.class);
 //                Intent intent = new Intent(context, HistoryCMOActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -74,7 +75,7 @@ public class HomeRMActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ProfileActivity.class);
                     startActivity(intent);
-//                finish();
+                finish();
                 }
             });
 

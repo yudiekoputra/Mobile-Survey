@@ -20,6 +20,7 @@ import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeRMActivity;
 import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
 import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
+import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +39,8 @@ import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText nip, password;
     private CheckBox rememberme;
     private Button buttonLogin;
+    private int counter_back = 1;
     RequestAPIServices apiServices;
 
     @Override
@@ -68,9 +72,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn(){
+        ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
         String usernameValue = nip.getText().toString();
         String pwdValue = password.getText().toString();
-        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
 
         apiServices.loginRequest(nip.getText().toString(), password.getText().toString(), "password")
                 .enqueue(new Callback<ResponseLogin>() {
@@ -83,17 +88,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String position = newResponse.getPosition();
                             if (position.equals("MO")){
                                 Intent intent = new Intent(context, HomeCMOActivity.class);
-                                intent.putExtra("position", "CMO");
+//                                intent.putExtra("position", "CMO");
                                 startActivity(intent);
                             }else if (position.equals("BM")){
                                 Intent intent = new Intent(context, HomeBMActivity.class);
-                                intent.putExtra("position", "BM");
+//                                intent.putExtra("position", "BM");
                                 startActivity(intent);
                             }else if (position.equals("RM")){
                                 Intent intent = new Intent(context, HomeRMActivity.class);
-                                intent.putExtra("position", "RM");
+//                                intent.putExtra("position", "RM");
                                 startActivity(intent);
                             }
+                            SessionManager.savePosition(context, position);
                         }else {
                             Toast.makeText(context, "Username or Password is incorrect", Toast.LENGTH_SHORT).show();
                         }
@@ -131,5 +137,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(i == R.id.buttonLogin){
             signIn();
         }
+    }
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        if(counter_back<2){
+            Toast.makeText(context, "Tekan Back sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
+            counter_back++;
+            countdownReset();
+        }else if(counter_back==2){
+            finish();
+        }
+
+    }
+    private void countdownReset(){
+        TimerTask timerTask= new TimerTask() {
+            @Override
+            public void run() {
+                counter_back=1;
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(timerTask, Constanta.COUNTDOWN_RESET);
     }
 }

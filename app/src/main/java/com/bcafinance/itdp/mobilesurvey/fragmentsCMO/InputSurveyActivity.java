@@ -111,8 +111,8 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
 
     private void saveContent(){
 //        String username = auth.getCurrentUser().getUid();
-            final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
-            loading.show();
+//            final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+//            loading.show();
 
 //            FirebaseDatabase database = FirebaseDatabase.getInstance();
 //            DatabaseReference getReference;
@@ -291,6 +291,15 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
             saveContent();
             Intent i = new Intent(context, SurveyKonsumenActivity.class);
             startActivity(i);
+//            finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Intent intent = new Intent(context, HomeCMOActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
