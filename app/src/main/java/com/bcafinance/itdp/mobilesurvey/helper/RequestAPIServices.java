@@ -26,10 +26,10 @@ public interface RequestAPIServices {
                                     @Field("password") String password,
                                     @Field("grant_type")String grant_type);
 
-//    @POST("API/AddKonsumen")
-//    Call<AddKonsumen> addKonsumen(@Body AddKonsumen body);
-
     @POST("API/AddKonsumen")
     Call<AddKonsumen> addKonsumen(@Header("Authorization") String token,
                                  @Body AddKonsumen body);
+
+    @GET("API/getHistoryKonsumen")
+    Call<HistoryKonsumen>historyKonsumen(@Header("Authorization") String token);
 }

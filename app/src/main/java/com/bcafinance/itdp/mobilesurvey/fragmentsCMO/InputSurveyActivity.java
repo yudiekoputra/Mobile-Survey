@@ -28,6 +28,7 @@ import com.bcafinance.itdp.mobilesurvey.customs.CustomExpandCollapseBar;
 import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
 import com.bcafinance.itdp.mobilesurvey.helper.AddKonsumen;
 import com.bcafinance.itdp.mobilesurvey.helper.Data;
+import com.bcafinance.itdp.mobilesurvey.helper.Datum;
 import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.helper.RetrofitClient;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
@@ -103,6 +104,7 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
         warnaMobil = findViewById(R.id.warnaMobil);
         dealerShowroom = findViewById(R.id.dealerShowroom);
         informasiTambahan = findViewById(R.id.informasiTambahan);
+        informasiTambahan.setVisibility(View.GONE);
 
         barExpandRumah =findViewById(R.id.barExpandRumah);
         layoutRumah = findViewById(R.id.layoutRumah);
@@ -127,36 +129,60 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void checkKosong(){
+        String mobileIdValue = mobileId.getText().toString();
         String namaKonsumenValue = namaKonsumen.getText().toString();
-        if (namaKonsumen == null && namaKonsumen.equals("null") && namaKonsumenValue.isEmpty()){
-            Toast.makeText(context, "Nama Konsumen Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-            namaKonsumen.setPressed(true);
-        }else {
-            saveContent();
-        }
+        String noKTPValue = noKTP.getText().toString();
+        String noHpValue = noHp.getText().toString();
+        String tempatLahirValue = tempatLahir.getText().toString();
+        String tanggalLahirValue = tanggalLahir.getText().toString();
+        String namaIbuKandungValue = namaIbuKandung.getText().toString();
+
+        if(namaIbuKandungValue.isEmpty()) {
+            Toast.makeText(context, "Nama Ibu Kandung Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+            namaIbuKandung.setPressed(true);
+            if(tanggalLahirValue.isEmpty()){
+                Toast.makeText(context, "Tanggal Lahir Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                if(tempatLahirValue.isEmpty()){
+                    Toast.makeText(context, "Tempat Lahir Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    tempatLahir.setPressed(true);
+                    if(noHpValue.isEmpty()){
+                        Toast.makeText(context, "No HP Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                        noHp.setPressed(true);
+                        if(noKTPValue.isEmpty()){
+                            Toast.makeText(context, "No KTP Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                            noKTP.setPressed(true);
+                            if(namaKonsumenValue.isEmpty()){
+                                Toast.makeText(context, "Nama Konsumen Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                                namaKonsumen.setPressed(true);
+                                if (mobileIdValue.isEmpty()) {
+                                    Toast.makeText(context, "Mobile ID Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                                    mobileId.setPressed(true);
+                                }else{ }
+                            }else{ }
+                        }else{ }
+                    }else{ }
+                }else{ }
+            }else { }
+        }else{ }
+        saveContent(mobileIdValue, namaKonsumenValue, noKTPValue, noHpValue, tempatLahirValue, tanggalLahirValue);
     }
 
-    private void saveContent(){
+    private void saveContent(String mobileId, String namaKonsumen, String noKTP, String noHp, String tempatLahir, String tanggalLahir){
         final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
         loading.show();
         String user = SessionManager.getUser(context);
         String token = SessionManager.getToken(context);
-        String namaKonsumenValue = namaKonsumen.getText().toString();
 
         Data data = new Data();
-        if (namaKonsumen == null && namaKonsumen.equals("null") && namaKonsumenValue.isEmpty()){
-            Toast.makeText(context, "Nama Konsumen Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-            namaKonsumen.setPressed(true);
-        }else {
-            data.setNamaKonsumen(namaKonsumen.getText().toString());
-        }
-        data.setNoKTP(noKTP.getText().toString());
-        data.setTanggallahir(tanggalLahir.getText().toString());
+
+        data.setNamaKonsumen(namaKonsumen);
+        data.setNoKTP(noKTP);
+        data.setTanggallahir(tanggalLahir);
         data.setNamaIbuKandung(namaIbuKandung.getText().toString());
-        data.setTempatlahir(tempatLahir.getText().toString());
+        data.setTempatlahir(tempatLahir);
         data.setNamaPasangan(namaPasangan.getText().toString());
         data.setJumlahTanggungan(jmlTanggungan.getText().toString());
-        data.setNoHP(noHp.getText().toString());
+        data.setNoHP(noHp);
         data.setNoTelp(noTelp.getText().toString());
         data.setAlamatRumah(alamatRumah.getText().toString());
         data.setRtRumah(RtRumah.getText().toString());
@@ -181,7 +207,7 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
 
         AddKonsumen addKonsumen = new AddKonsumen();
         addKonsumen.setUserid(user);
-        addKonsumen.setMobileID(mobileId.getText().toString());
+        addKonsumen.setMobileID(mobileId);
         addKonsumen.setData(data);
 
         apiServices.addKonsumen("bearer "+token, addKonsumen).enqueue(new Callback<AddKonsumen>() {
@@ -189,13 +215,14 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
             public void onResponse(Call<AddKonsumen> call, Response<AddKonsumen> response) {
                 loading.dismiss();
                     if (response.code()==200){
-                        Toast.makeText(context, "Berhasil Menyimpan Data Konsumen", Toast.LENGTH_SHORT).show();
+                        String kodeKonsumen = response.body().getData().getDataID();
+                        SessionManager.saveKodeKonsumen(context, kodeKonsumen);
 
+                        Toast.makeText(context, "Berhasil Menyimpan Data Konsumen ", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(context, SurveyKonsumenActivity.class);
                         startActivity(i);
                     }else {
                         loading.dismiss();
-                        Toast.makeText(context, "Data Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -205,25 +232,6 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
                 Toast.makeText(context, "Error, Mohon Cek Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
             }
         });
-
-//            apiServices.data(noKTPValue, namaKonsumenValue, namaPasanganValue, namaIbuKandungValue, tempatLahirValue, tanggalLahirValue,
-//                    jmlTanggunganValue, noTelpValue, alamatRumahValue, kelurahanRumahValue, kecamatanRumahValue, kodePosRumahValue,
-//                    namaTempatUsahaValue, alamatUsahaValue, kelurahanUsahaValue, kecamatanUsahaValue, kodePosUsahaValue, merkMobilValue, warnaMobilValue, dealerShowroomValue)
-//                    .enqueue(new Callback<Data>() {
-//                        @Override
-//                        public void onResponse(Call<Data> call, Response<Data> response) {
-//                            Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Data> call, Throwable t) {
-//                            Toast.makeText(context, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//            String mobileIdValue = mobileId.getText().toString();
-//            String tanggalSurveyValue = tanggalSurvey.getText().toString();
-//            String jamSurveyValue = jamSurvey.getText().toString();
-//            String informasiTambahanValue = informasiTambahan.getText().toString();
 //            String pertanyaanSatuValue = SessionManager.getPertanyaanSatu(context);
 //            String pertanyaanDuaValue = SessionManager.getPertanyaanDua(context);
 //            String platNomorValue = SessionManager.getPlatNomor(context);
@@ -290,34 +298,6 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
 //            String namaAlamatUsahaValue = SessionManager.getNamaAlamatKantor(context);
 //            String latitude2Value = SessionManager.getLatitude2(context);
 //            String longitude2Value = SessionManager.getLongitude2(context);
-//
-//        getReference = database.getReference();
-//
-//            if (isEmpty(namaKonsumenValue)&& isEmpty(noKTPValue)){
-//                Toast.makeText(context, "Data Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
-//                loading.dismiss();
-//
-//            }else {
-//                getReference.child("inputSurvey").push()
-//                        .setValue(new inputSurvey(statusValue, namaKonsumenValue, noKTPValue, tempatLahirValue, tanggalLahirValue, noTelpValue, alamatRumahValue, kelurahanRumahValue, kecamatanRumahValue, kodePosRumahValue, namaPasanganValue, jmlTanggunganValue, namaIbuKandungValue,
-//                                namaTempatUsahaValue, alamatUsahaValue, kelurahanUsahaValue, kecamatanUsahaValue, kodePosUsahaValue, merkMobilValue, warnaMobilValue, dealerShowroomValue, mobileIdValue, tanggalSurveyValue, jamSurveyValue, informasiTambahanValue,
-//                                pertanyaanSatuValue, pertanyaanDuaValue, platNomorValue, merkTipeValue, warnaValue, tahunKendaraanValue, jenisKreditValue, totalAngsuranValue, totalPenghasilanValue, pertanyaanLimaValue,
-//                                pertanyaanEnamValue, pertanyaanTujuhValue, pertanyaanDelapanValue, pertanyaanSembilanValue, pertanyaanSepuluhValue, pertanyaanSebelasValue,
-//                                pertanyaanDuaBelasValue, pertanyaanTigaBelasValue, pertanyaanEmpatBelasValue, pertanyaanLimaBelasValue, pertanyaanEnamBelasValue, pertanyaanTujuhBelasValue, pertanyaanDelapanBelasValue, pertanyaanSembilanBelasValue, pertanyaanDuaPuluhValue,
-//                                pertanyaanDuaSatuValue, pertanyaanDuaDuaValue, pertanyaanDuaTigaValue, pertanyaanDuaEmpatValue, pertanyaanDuaLimaValue, pertanyaanDuaEnamValue, pertanyaanDuaTujuhValue,
-//                                jawabanEnamBelasValue, jawabanTujuhBelasValue, jawabanDelapanBelasTipeValue, jawabanDelapanBelasWarnaValue, jawabanDuaPuluhValue, jawabanDuaTigaValue, jawabanDuaEmpatValue, jawabanDuaLimaTipeValue, jawabanDuaLimaWarnaValue, jawabanDuaTujuhValue, namaNarasumber1Value, namaNarasumber2Value,
-//                                namaAlamatRumahValue, latitude1Value, longitude1Value, pertanyaanDuaDelapanValue, pertanyaanDuaSembilanValue, pertanyaanTigaPuluhValue, pertanyaanTigaSatuValue, jawabanDuaDelapanValue, jawabanDuaSembilanValue, pertanyaanTigaDuaValue, pertanyaanTigaTigaValue, pertanyaanTigaEmpatValue, pertanyaanTigaLimaValue,
-//                                jawabanTigaDuaValue, jawabanTigaTigaValue, jawabanTigaEmpatValue, jawabanTigaLimaValue, namaNarasumber3Value, namaNarasumber4Value, namaAlamatUsahaValue, latitude2Value, longitude2Value)).addOnSuccessListener(this, new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Toast.makeText(context, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-//
-//                        Intent intent = new Intent(context, HomeCMOActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                });
-//            }
     }
 
     private void setTanggalLahir(){

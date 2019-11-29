@@ -28,9 +28,9 @@ public class SessionManager {
 
         editor.commit();
     }
-    public static void saveUsername(Context context, String username){
+    public static void saveKodeKonsumen(Context context, String kodeKonsumen){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.KEY_USERNAME, username);
+        editor.putString(Constanta.KODEKONSUMEN, kodeKonsumen);
         editor.commit();
     }
     public static void saveResponLogin(Context context, String token, String user, String position){
@@ -84,24 +84,6 @@ public class SessionManager {
         editor.putString(Constanta.NAMAALAMATRUMAH, namaAlamatRumah);
         editor.putString(Constanta.LATITUDE1, latitude1);
         editor.putString(Constanta.LONGITUDE1, longitude1);
-        editor.commit();
-    }
-
-    public static void saveDataKonsumen(Context context, String namaKonsumen, String noKTP, String tempatLahir, String tanggalLahir,
-                                        String noTelp, String merkMobil, String warnaMobil, String dealerShowroom,
-                                    String tanggalSurvey, String jamSurvey, String informasiTambahan){
-        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.NAMA_KONSUMEN, namaKonsumen);
-        editor.putString(Constanta.NO_KTP, noKTP);
-        editor.putString(Constanta.TEMPAT_LAHIR, tempatLahir);
-        editor.putString(Constanta.TANGGAL_LAHIR, tanggalLahir);
-        editor.putString(Constanta.NO_TELP, noTelp);
-        editor.putString(Constanta.MERK_MOBIL, merkMobil);
-        editor.putString(Constanta.WARNA_MOBIL, warnaMobil);
-        editor.putString(Constanta.DEALER_SHOWROOM, dealerShowroom);
-        editor.putString(Constanta.TANGGAL_SURVEY, tanggalSurvey);
-        editor.putString(Constanta.JAM_SURVEY, jamSurvey);
-        editor.putString(Constanta.INFORMASITAMBAHAN, informasiTambahan);
         editor.commit();
     }
 
@@ -234,6 +216,10 @@ public class SessionManager {
         return retrieveSharedPreferences(context).getString(Constanta.POSITION, "");
     }
 
+    public static String getKodeKonsumen(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.KODEKONSUMEN, "");
+    }
+
     //ambil username
     public static String getNIP(Context context){
         return retrieveSharedPreferences(context).getString(Constanta.KEY_NIP, "");
@@ -245,94 +231,6 @@ public class SessionManager {
     //ambil remember me
     public static boolean getRemember(Context context){
         return retrieveSharedPreferences(context).getBoolean(Constanta.KEY_REMEMBER, false);
-    }
-
-    public static String getNamaKonsumen(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NAMA_KONSUMEN, "");
-    }
-
-    public static String getNoKTP(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NO_KTP, "");
-    }
-
-    public static String getTempatLahir(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.TEMPAT_LAHIR, "");
-    }
-
-    public static String getTanggalLahir(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.TANGGAL_LAHIR, "");
-    }
-
-    public static String getAlamatRumah(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.ALAMAT_RUMAH, "");
-    }
-
-    public static String getKelurahanRumah(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KELURAHAN_RUMAH, "");
-    }
-
-    public static String getKecamatanRumah(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KECAMATAN_RUMAH, "");
-    }
-
-    public static String getKodePosRumah(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KODE_POS_RUMAH, "");
-    }
-
-    public static String getNoTelp(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NO_TELP, "");
-    }
-
-    public static String getNamaPasangan(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NAMA_PASANGAN, "");
-    }
-
-    public static String getJmlTanggungan(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.JML_TANGGUNGAN, "");
-    }
-
-    public static String getNamaIbuKandung(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NAMA_IBU_KANDUNG, "");
-    }
-
-    public static String getNamaUsaha(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.NAMA_TEMPAT_USAHA, "");
-    }
-
-    public static String getAlamatUsaha(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.ALAMAT_USAHA, "");
-    }
-
-    public static String getKelurahanUsaha(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KELURAHAN_USAHA, "");
-    }
-
-    public static String getKecamatanUsaha(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KECAMATAN_USAHA, "");
-    }
-
-    public static String getKodePosUsaha(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KODE_POS_USAHA, "");
-    }
-
-    public static String getMerkMobil(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.MERK_MOBIL, "");
-    }
-
-    public static String getWarnaMobil(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.WARNA_MOBIL, "");
-    }
-
-    public static String getDealerShowroom(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.DEALER_SHOWROOM, "");
-    }
-
-    public static String getTanggalSurvey(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.TANGGAL_SURVEY, "");
-    }
-
-    public static String getJamSurvey(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.JAM_SURVEY, "");
     }
 
     public static String getPertanyaanSatu(Context context){

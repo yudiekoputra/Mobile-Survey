@@ -17,6 +17,7 @@ public class Constanta {
     public static String POSITION = "position";
     public static String TOKEN = "token";
     public static String USER = "user";
+    public static String KODEKONSUMEN = "kodeKonsumen";
 
     public static String ID_EXTRA_NIP = "NIP";
 

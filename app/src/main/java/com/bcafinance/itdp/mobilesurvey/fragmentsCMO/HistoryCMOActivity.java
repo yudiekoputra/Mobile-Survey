@@ -17,6 +17,8 @@ import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeBMActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeRMActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.ListAdapter;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.bcafinance.itdp.mobilesurvey.utility.inputSurvey;
@@ -40,11 +42,13 @@ public class HistoryCMOActivity extends AppCompatActivity {
     private ArrayList<inputSurvey> dataSurvey;
     private FirebaseAuth auth;
     private ListAdapter listAdapter;
+    RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_cmo);
+        apiServices = APIUtilities.getAPIServices();
 
         recyclerView = findViewById(R.id.datalist);
         auth = FirebaseAuth.getInstance();

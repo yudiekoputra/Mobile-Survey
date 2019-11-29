@@ -323,4 +323,16 @@ public class Data {
     public void setDealerMobil(String dealerMobil) {
         this.dealerMobil = dealerMobil;
     }
+
+    @SerializedName("DataID")
+    @Expose
+    private String dataID;
+
+    public String getDataID() {
+        return dataID;
+    }
+
+    public void setDataID(String dataID) {
+        this.dataID = dataID;
+    }
 }

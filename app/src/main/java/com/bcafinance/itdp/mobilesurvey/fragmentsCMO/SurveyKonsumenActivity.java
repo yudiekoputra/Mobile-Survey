@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.bcafinance.itdp.mobilesurvey.R;
 //import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.Edit_Form_Survey.FormSurveyKonsumenEdit;
 import com.bcafinance.itdp.mobilesurvey.helper.BitmapHelper;
+import com.bcafinance.itdp.mobilesurvey.helper.Datum;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.bumptech.glide.Glide;
@@ -49,10 +50,11 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
     private Context context = this;
     private Spinner pertanyaanDua, pertanyaanLima;
     private RadioGroup pertanyaanSatu, platNomor, merkTipe, warna, tahunKendaraan, pilihSurvey;
-    private EditText namaPasangan, jmlTanggungan, namaIbuKandung, jenisKredit, totalAngsuran, totalPenghasilan;
+    private EditText jenisKredit, totalAngsuran, totalPenghasilan;
     private Button buttonSubmitSurveyKonsumen, buttonBack, buttonCamera9, buttonCamera10, buttonCamera11, buttonCamera12;
     private ImageView imageKtp, imageKtpSelfie, imageSelfieCmoKonsumen, imageSelfieCmoRumah;
     private RadioButton surveyRumah, surveyUsaha;
+    Datum datum;
 
     private int REQUEST_CODE_CAMERA9 = 9;
     private int REQUEST_CODE_CAMERA10 = 10;
@@ -79,6 +81,7 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         warna = findViewById(R.id.warna);
         tahunKendaraan = findViewById(R.id.tahunKendaraan);
         jenisKredit = findViewById(R.id.jenisKredit);
+        jenisKredit.setText(datum.getMobileID());
         totalAngsuran = findViewById(R.id.totalAngsuran);
         totalPenghasilan = findViewById(R.id.totalPenghasilan);
         pertanyaanLima = findViewById(R.id.pertanyaanLima);

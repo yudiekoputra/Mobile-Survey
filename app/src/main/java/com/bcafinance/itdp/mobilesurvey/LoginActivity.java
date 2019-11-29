@@ -93,18 +93,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String token = response.body().getAccessToken();
                             String user = response.body().getUser();
 
-//                            String position = newResponse.getPosition();
                             if (position.equals("MO")){
                                 Intent intent = new Intent(context, HomeCMOActivity.class);
-//                                intent.putExtra("position", "CMO");
                                 startActivity(intent);
                             }else if (position.equals("BM")){
                                 Intent intent = new Intent(context, HomeBMActivity.class);
-//                                intent.putExtra("position", "BM");
                                 startActivity(intent);
                             }else if (position.equals("RM")){
                                 Intent intent = new Intent(context, HomeRMActivity.class);
-//                                intent.putExtra("position", "RM");
                                 startActivity(intent);
                             }
                             SessionManager.saveResponLogin(context, token, user, position);
