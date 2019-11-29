@@ -6,4 +6,8 @@ public class APIUtilities {
     public static RequestAPIServices getAPIServices(){
         return RetrofitClient.getClient(BASE_URL_API).create(RequestAPIServices.class);
     }
+
+    public static RequestAPIServices getToken(){
+        return RetrofitClient.getToken(BASE_URL_API).create(RequestAPIServices.class);
+    }
 }

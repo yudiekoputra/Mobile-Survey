@@ -42,6 +42,21 @@ tools:context=".fragmentsCMO.InputSurveyActivity">
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textMobileId"
+                style="@style/parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mobileId"
+                    style="@style/modifiedEditText"
+                    android:hint="Mobile ID"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="15sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textNamaKonsumen"
                 style="@style/parent"
                 android:layout_marginStart="20dp"
@@ -71,114 +86,224 @@ tools:context=".fragmentsCMO.InputSurveyActivity">
                     android:textSize="15sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textTempatLahir"
-                style="@style/parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textNoHp"
+                    style="@style/parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="5">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/noHp"
+                        style="@style/modifiedEditText"
+                        android:hint="No HP"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textNoTelp"
+                    style="@style/parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_marginEnd="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/noTelp"
+                        style="@style/modifiedEditText"
+                        android:hint="No Telp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textTempatLahir"
+                    style="@style/parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="7"
+                    android:layout_marginStart="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tempatLahir"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/tempatLahir"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textTanggalLahir"
+                    style="@style/parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_marginEnd="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tanggalLahir"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/tanggalLahir"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/barExpandRumah"
+                style="@style/expandBarText"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tempatLahir"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/tempatLahir"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textTanggalLahir"
-                style="@style/parent"
+                android:layout_marginEnd="20dp"
+                android:text="Informasi Rumah Konsumen"/>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/layoutRumah"
+                style="@style/expandLayout"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textAlamatRumah"
+                        style="@style/parent"
+                        android:layout_marginTop="5dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tanggalLahir"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/tanggalLahir"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/alamatRumah"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/alamatRumah"
+                            android:inputType="textMultiLine"
+                            android:maxLines="2"
+                            android:textSize="15sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textNoTelp"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textRTRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/noTelp"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/noTelp"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/RtRumah"
+                                style="@style/modifiedEditText"
+                                android:hint="RT"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textAlamatRumah"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textRwRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/alamatRumah"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/alamatRumah"
-                    android:inputType="textMultiLine"
-                    android:maxLines="2"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/RwRumah"
+                                style="@style/modifiedEditText"
+                                android:hint="RW"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKelurahanRumah"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKelurahanRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kelurahanRumah"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kelurahan"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kelurahanRumah"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kelurahan"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKecamatanRumah"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKecamatanRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kecamatanRumah"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kecamatan"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kecamatanRumah"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kecamatan"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKodePosRumah"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKotaRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="7">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kodePosRumah"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kodePos"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/kotaRumah"
+                            style="@style/modifiedEditText"
+                            android:hint="Kabupaten/Kota"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKodePosRumah"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="3">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kodePosRumah"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kodePos"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textNamaPasangan"
                 style="@style/parent"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp">
 
@@ -221,144 +346,266 @@ tools:context=".fragmentsCMO.InputSurveyActivity">
                     android:textSize="15sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textNamaTempatUsaha"
-                style="@style/parent"
+            <TextView
+                android:id="@+id/barExpandUsaha"
+                style="@style/expandBarText"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/namaTempatUsaha"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/namaTempatUsaha"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textAlamatUsaha"
-                style="@style/parent"
+                android:layout_marginEnd="20dp"
+                android:text="Informasi Usaha/Kantor Konsumen"/>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/layoutUsaha"
+                style="@style/expandLayout"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textNamaTempatUsaha"
+                        style="@style/parent"
+                        android:layout_marginTop="5dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/alamatUsaha"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/alamatUsaha"
-                    android:inputType="textMultiLine"
-                    android:maxLines="2"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/namaTempatUsaha"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/namaTempatUsaha"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="15sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKelurahanUsaha"
-                style="@style/parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textAlamatUsaha"
+                        style="@style/parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/alamatUsaha"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/alamatUsaha"
+                            android:inputType="textMultiLine"
+                            android:maxLines="2"
+                            android:textSize="15sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textRTUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/RtUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="RT"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textRwUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/RwUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="RW"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKelurahanUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kelurahanUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kelurahan"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKecamatanUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kecamatanUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kecamatan"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKotaUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="7">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kotaUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="Kabupaten/Kota"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textKodePosUsaha"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="3">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/kodePosUsaha"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/kodePos"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+            <TextView
+                android:id="@+id/barExpandMobil"
+                style="@style/expandBarText"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kelurahanUsaha"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kelurahan"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKecamatanUsaha"
-                style="@style/parent"
+                android:layout_marginEnd="20dp"
+                android:text="Informasi Mobil"/>
+            <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:id="@+id/layoutMobil"
+                style="@style/expandLayout"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                app:ael_expanded="false"
+                app:ael_interpolator="accelerate"
+                app:ael_orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="165dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textMerk"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kecamatanUsaha"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kecamatan"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/merkMobil"
+                                style="@style/modifiedEditText"
+                                android:hint="Merk Mobil"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textTipe"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textKodePosUsaha"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tipeMobil"
+                                style="@style/modifiedEditText"
+                                android:hint="Tipe Mobil"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/kodePosUsaha"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/kodePos"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textTahunMobil"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textMerk"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/tahunMobil"
+                                style="@style/modifiedEditText"
+                                android:hint="Tahun Mobil"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textWarnaMobil"
+                            style="@style/parent"
+                            android:layout_width="0dp"
+                            android:layout_weight="5">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/merkMobil"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/merk"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/warnaMobil"
+                                style="@style/modifiedEditText"
+                                android:hint="@string/warnaMobil"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:textSize="15sp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textWarnaMobil"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textDealerShowroom"
+                        style="@style/parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/warnaMobil"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/warnaMobil"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textDealerShowroom"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dealerShowroom"
-                    style="@style/modifiedEditText"
-                    android:hint="@string/dealerShowroom"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textMobileId"
-                style="@style/parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mobileId"
-                    style="@style/modifiedEditText"
-                    android:hint="Mobile ID"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dealerShowroom"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/dealerShowroom"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="15sp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.github.aakira.expandablelayout.ExpandableLinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInformasiTambahan"
                 style="@style/parent"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp">
 
@@ -370,156 +617,35 @@ tools:context=".fragmentsCMO.InputSurveyActivity">
                     android:hint="Informasi Tambahan" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tanggalSurvey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-            <TextView
-                android:id="@+id/jamSurvey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
-
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        style="@style/linearExpandText"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/buttonBack"
+            style="@style/loginButton"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/buttonKonsumen"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:outlineAmbientShadowColor="@color/TextDarkGrey"
-                    android:outlineSpotShadowColor="@color/TextDarkGrey">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/lingkaran_menu"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_assignment_ind_black_24dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:text="Survey Konsumen"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/buttonRumah"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:outlineAmbientShadowColor="@color/TextDarkGrey"
-                    android:outlineSpotShadowColor="@color/TextDarkGrey">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/lingkaran_menu"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_home_black_24dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="Survey Rumah"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/buttonUsahaKantor"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:outlineAmbientShadowColor="@color/TextDarkGrey"
-                    android:outlineSpotShadowColor="@color/TextDarkGrey">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/lingkaran_menu"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_business_center_black_24dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:lines="2"
-                        android:text="Survey \n Usaha/Kantor"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvSurveyKonsumen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/quantum_googred"
-                android:text="*Survey Konsumen Harus diisi"/>
-            <TextView
-                android:id="@+id/tvSurveyRumahKantor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/quantum_googred"
-                android:text="*Silahkan Pilih Survey Rumah / Usaha"/>
-
-        </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="BACK" />
         <Button
             android:id="@+id/buttonSubmit"
             style="@style/loginButton"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:text="SUBMIT" />
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>
 </RelativeLayout>

@@ -33,8 +33,10 @@ public class SessionManager {
         editor.putString(Constanta.KEY_USERNAME, username);
         editor.commit();
     }
-    public static void savePosition(Context context, String position){
+    public static void saveResponLogin(Context context, String token, String user, String position){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
+        editor.putString(Constanta.TOKEN, token);
+        editor.putString(Constanta.USER, user);
         editor.putString(Constanta.POSITION, position);
         editor.commit();
     }
@@ -218,6 +220,14 @@ public class SessionManager {
 
     public static String getUsername(Context context){
         return retrieveSharedPreferences(context).getString(Constanta.KEY_USERNAME, "");
+    }
+
+    public static String getToken(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.TOKEN, "");
+    }
+
+    public static String getUser(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.USER, "");
     }
 
     public static String getPosition(Context context){

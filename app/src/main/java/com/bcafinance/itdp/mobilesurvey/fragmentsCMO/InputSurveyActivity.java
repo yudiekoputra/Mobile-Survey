@@ -3,9 +3,11 @@ package com.bcafinance.itdp.mobilesurvey.fragmentsCMO;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.Camera;
@@ -22,122 +24,202 @@ import android.widget.Toast;
 
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
+import com.bcafinance.itdp.mobilesurvey.customs.CustomExpandCollapseBar;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.AddKonsumen;
+import com.bcafinance.itdp.mobilesurvey.helper.Data;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
+import com.bcafinance.itdp.mobilesurvey.helper.RetrofitClient;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 //import com.bcafinance.itdp.mobilesurvey.utility.input_survey;
 import com.bcafinance.itdp.mobilesurvey.utility.inputSurvey;
+import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.text.TextUtils.isEmpty;
 
 public class InputSurveyActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = this;
-    private EditText namaKonsumen, noKTP, tempatLahir, tanggalLahir, noTelp, alamatRumah, kelurahanRumah, kecamatanRumah, kodePosRumah, namaPasangan, jmlTanggungan, namaIbuKandung,
-            namaTempatUsaha, alamatUsaha, kelurahanUsaha, kecamatanUsaha, kodePosUsaha, merkMobil, warnaMobil, dealerShowroom, mobileId, informasiTambahan;
-    private Button buttonSubmit;
-    private CardView buttonRumah, buttonUsaha, buttonKonsumen;
-    TextView tanggalSurvey, jamSurvey;
-    TextView tvNotif, tvKons;
+    private EditText namaKonsumen, noKTP, tempatLahir, tanggalLahir, noTelp, noHp, alamatRumah, RtRumah, RwRumah, kelurahanRumah, kecamatanRumah, kotaRumah, kodePosRumah, namaPasangan, jmlTanggungan, namaIbuKandung,
+            namaTempatUsaha, alamatUsaha, RtUsaha, RwUsaha, kelurahanUsaha, kecamatanUsaha, kotaUsaha, kodePosUsaha, merkMobil, tipeMobil, tahunMobil, warnaMobil, dealerShowroom, mobileId, informasiTambahan;
+    private Button buttonSubmit, buttonBack;
+    TextView tanggalSurvey, jamSurvey, barExpandRumah, barExpandUsaha, barExpandMobil;
+    RequestAPIServices apiServices;
+    private ExpandableLinearLayout layoutRumah, layoutUsaha, layoutMobil;
+    private CustomExpandCollapseBar expandCollapseBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_survey);
+        apiServices = APIUtilities.getAPIServices();
 
+        mobileId = findViewById(R.id.mobileId);
         namaKonsumen = findViewById(R.id.namaKonsumen);
         noKTP = findViewById(R.id.noKTP);
         tempatLahir = findViewById(R.id.tempatLahir);
         tanggalLahir = findViewById(R.id.tanggalLahir);
         noTelp = findViewById(R.id.noTelp);
+        noHp = findViewById(R.id.noHp);
         alamatRumah = findViewById(R.id.alamatRumah);
+        RtRumah = findViewById(R.id.RtRumah);
+        RwRumah = findViewById(R.id.RwRumah);
         kelurahanRumah = findViewById(R.id.kelurahanRumah);
         kecamatanRumah = findViewById(R.id.kecamatanRumah);
+        kotaRumah = findViewById(R.id.kotaRumah);
         kodePosRumah = findViewById(R.id.kodePosRumah);
         namaPasangan = findViewById(R.id.namaPasangan);
         jmlTanggungan = findViewById(R.id.jmlTanggungan);
         namaIbuKandung = findViewById(R.id.namaIbuKandung);
         namaTempatUsaha = findViewById(R.id.namaTempatUsaha);
         alamatUsaha = findViewById(R.id.alamatUsaha);
+        RtUsaha = findViewById(R.id.RtUsaha);
+        RwUsaha = findViewById(R.id.RwUsaha);
         kelurahanUsaha = findViewById(R.id.kelurahanUsaha);
         kecamatanUsaha = findViewById(R.id.kecamatanUsaha);
+        kotaUsaha = findViewById(R.id.kotaUsaha);
         kodePosUsaha = findViewById(R.id.kodePosUsaha);
         merkMobil = findViewById(R.id.merkMobil);
+        tipeMobil = findViewById(R.id.tipeMobil);
+        tahunMobil = findViewById(R.id.tahunMobil);
         warnaMobil = findViewById(R.id.warnaMobil);
         dealerShowroom = findViewById(R.id.dealerShowroom);
-        mobileId = findViewById(R.id.mobileId);
         informasiTambahan = findViewById(R.id.informasiTambahan);
-        tvNotif = findViewById(R.id.tvSurveyRumahKantor);
-        tvKons = findViewById(R.id.tvSurveyKonsumen);
-        tvKons.setVisibility(View.GONE);
-        tvNotif.setVisibility(View.GONE);
 
-        String tanggalSurveySekarang = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
-        String jamSurveySekarang = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        barExpandRumah =findViewById(R.id.barExpandRumah);
+        layoutRumah = findViewById(R.id.layoutRumah);
+        expandCollapseBar = new CustomExpandCollapseBar(barExpandRumah, layoutRumah,false);
 
-        tanggalSurvey = findViewById(R.id.tanggalSurvey);
-        tanggalSurvey.setText(tanggalSurveySekarang);
+        barExpandMobil =findViewById(R.id.barExpandMobil);
+        layoutMobil = findViewById(R.id.layoutMobil);
+        expandCollapseBar = new CustomExpandCollapseBar(barExpandMobil, layoutMobil,false);
 
-        jamSurvey = findViewById(R.id.jamSurvey);
-        jamSurvey.setText(jamSurveySekarang);
-
-        buttonRumah = findViewById(R.id.buttonRumah);
-        buttonRumah.setOnClickListener(this);
-
-        buttonUsaha = findViewById(R.id.buttonUsahaKantor);
-        buttonUsaha.setOnClickListener(this);
-
-        buttonKonsumen = findViewById(R.id.buttonKonsumen);
-        buttonKonsumen.setOnClickListener(this);
+        barExpandUsaha =findViewById(R.id.barExpandUsaha);
+        layoutUsaha = findViewById(R.id.layoutUsaha);
+        expandCollapseBar = new CustomExpandCollapseBar(barExpandUsaha, layoutUsaha,false);
 
         buttonSubmit=findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(this);
 
-        buttonKonsumen.setVisibility(View.GONE);
-        buttonRumah.setVisibility(View.GONE);
-        buttonUsaha.setVisibility(View.GONE);
+        buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(this);
 
         setTanggalLahir();
 
     }
 
-    private void saveContent(){
-//        String username = auth.getCurrentUser().getUid();
-//            final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
-//            loading.show();
+    private void checkKosong(){
+        String namaKonsumenValue = namaKonsumen.getText().toString();
+        if (namaKonsumen == null && namaKonsumen.equals("null") && namaKonsumenValue.isEmpty()){
+            Toast.makeText(context, "Nama Konsumen Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+            namaKonsumen.setPressed(true);
+        }else {
+            saveContent();
+        }
+    }
 
-//            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//            DatabaseReference getReference;
+    private void saveContent(){
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
+        String user = SessionManager.getUser(context);
+        String token = SessionManager.getToken(context);
+        String namaKonsumenValue = namaKonsumen.getText().toString();
+
+        Data data = new Data();
+        if (namaKonsumen == null && namaKonsumen.equals("null") && namaKonsumenValue.isEmpty()){
+            Toast.makeText(context, "Nama Konsumen Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+            namaKonsumen.setPressed(true);
+        }else {
+            data.setNamaKonsumen(namaKonsumen.getText().toString());
+        }
+        data.setNoKTP(noKTP.getText().toString());
+        data.setTanggallahir(tanggalLahir.getText().toString());
+        data.setNamaIbuKandung(namaIbuKandung.getText().toString());
+        data.setTempatlahir(tempatLahir.getText().toString());
+        data.setNamaPasangan(namaPasangan.getText().toString());
+        data.setJumlahTanggungan(jmlTanggungan.getText().toString());
+        data.setNoHP(noHp.getText().toString());
+        data.setNoTelp(noTelp.getText().toString());
+        data.setAlamatRumah(alamatRumah.getText().toString());
+        data.setRtRumah(RtRumah.getText().toString());
+        data.setRwRumah(RwRumah.getText().toString());
+        data.setKelurahanRumah(kelurahanRumah.getText().toString());
+        data.setKecamatanRumah(kecamatanRumah.getText().toString());
+        data.setKabupatenRumah(kotaRumah.getText().toString());
+        data.setKodeposRumah(kodePosRumah.getText().toString());
+        data.setNamaUsaha(namaTempatUsaha.getText().toString());
+        data.setAlamatUsaha(alamatUsaha.getText().toString());
+        data.setRtUsaha(RtUsaha.getText().toString());
+        data.setRwUsaha(RwUsaha.getText().toString());
+        data.setKelurahanUsaha(kelurahanUsaha.getText().toString());
+        data.setKecamatanUsaha(kecamatanUsaha.getText().toString());
+        data.setKabupatenUsaha(kotaUsaha.getText().toString());
+        data.setKodeposUsaha(kodePosUsaha.getText().toString());
+        data.setMerkMobil(merkMobil.getText().toString());
+        data.setTypeMobil(tipeMobil.getText().toString());
+        data.setTahunMobil(tahunMobil.getText().toString());
+        data.setWarnaMobil(warnaMobil.getText().toString());
+        data.setDealerMobil(dealerShowroom.getText().toString());
+
+        AddKonsumen addKonsumen = new AddKonsumen();
+        addKonsumen.setUserid(user);
+        addKonsumen.setMobileID(mobileId.getText().toString());
+        addKonsumen.setData(data);
+
+        apiServices.addKonsumen("bearer "+token, addKonsumen).enqueue(new Callback<AddKonsumen>() {
+            @Override
+            public void onResponse(Call<AddKonsumen> call, Response<AddKonsumen> response) {
+                loading.dismiss();
+                    if (response.code()==200){
+                        Toast.makeText(context, "Berhasil Menyimpan Data Konsumen", Toast.LENGTH_SHORT).show();
+
+                        Intent i = new Intent(context, SurveyKonsumenActivity.class);
+                        startActivity(i);
+                    }else {
+                        loading.dismiss();
+                        Toast.makeText(context, "Data Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            @Override
+            public void onFailure(Call<AddKonsumen> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Error, Mohon Cek Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//            apiServices.data(noKTPValue, namaKonsumenValue, namaPasanganValue, namaIbuKandungValue, tempatLahirValue, tanggalLahirValue,
+//                    jmlTanggunganValue, noTelpValue, alamatRumahValue, kelurahanRumahValue, kecamatanRumahValue, kodePosRumahValue,
+//                    namaTempatUsahaValue, alamatUsahaValue, kelurahanUsahaValue, kecamatanUsahaValue, kodePosUsahaValue, merkMobilValue, warnaMobilValue, dealerShowroomValue)
+//                    .enqueue(new Callback<Data>() {
+//                        @Override
+//                        public void onResponse(Call<Data> call, Response<Data> response) {
+//                            Toast.makeText(context, "Data berhasil disimpan", Toast.LENGTH_SHORT).show();
+//                        }
 //
-//            String statusValue = "In Progress";
-//            String namaKonsumenValue = namaKonsumen.getText().toString();
-//            String noKTPValue = noKTP.getText().toString();
-//            String tempatLahirValue = tempatLahir.getText().toString();
-//            String tanggalLahirValue = tanggalLahir.getText().toString();
-//            String noTelpValue = noTelp.getText().toString();
-//            String alamatRumahValue = alamatRumah.getText().toString();
-//            String kelurahanRumahValue = kelurahanRumah.getText().toString();
-//            String kecamatanRumahValue = kecamatanRumah.getText().toString();
-//            String kodePosRumahValue = kodePosRumah.getText().toString();
-//            String namaPasanganValue = namaPasangan.getText().toString();
-//            String jmlTanggunganValue = jmlTanggungan.getText().toString();
-//            String namaIbuKandungValue = namaIbuKandung.getText().toString();
-//            String namaTempatUsahaValue = namaTempatUsaha.getText().toString();
-//            String alamatUsahaValue = alamatUsaha.getText().toString();
-//            String kelurahanUsahaValue = kelurahanUsaha.getText().toString();
-//            String kecamatanUsahaValue = kecamatanUsaha.getText().toString();
-//            String kodePosUsahaValue = kodePosUsaha.getText().toString();
-//            String merkMobilValue = merkMobil.getText().toString();
-//            String warnaMobilValue = warnaMobil.getText().toString();
-//            String dealerShowroomValue = dealerShowroom.getText().toString();
+//                        @Override
+//                        public void onFailure(Call<Data> call, Throwable t) {
+//                            Toast.makeText(context, "Data gagal disimpan", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
 //            String mobileIdValue = mobileId.getText().toString();
 //            String tanggalSurveyValue = tanggalSurvey.getText().toString();
 //            String jamSurveyValue = jamSurvey.getText().toString();
@@ -257,7 +339,7 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
                         selected.set(year,month,dayOfMonth);
 
                         //konversi ke string
-                        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
                         String tanggal = formatDate.format(selected.getTime());
 
                         tanggalLahir.setText(tanggal);
@@ -273,31 +355,52 @@ public class InputSurveyActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         int a = v.getId();
-        if (a == R.id.buttonKonsumen){
-            tvKons.setVisibility(View.GONE);
-            Intent i = new Intent(context, SurveyKonsumenActivity.class);
-            startActivity(i);
-        }else if (a == R.id.buttonRumah){
-            buttonKonsumen.setContextClickable(false);
-            tvNotif.setVisibility(View.GONE);
-            Intent i = new Intent(context, SurveyRumahActivity.class);
-            startActivity(i);
-        }else if (a == R.id.buttonUsahaKantor){
-            buttonRumah.setContextClickable(false);
-            tvNotif.setVisibility(View.GONE);
-            Intent i = new Intent(context, SurveyUsahaActivity.class);
-            startActivity(i);
-        }else if (a == R.id.buttonSubmit){
-            saveContent();
-            Intent i = new Intent(context, SurveyKonsumenActivity.class);
-            startActivity(i);
-//            finish();
+        if (a == R.id.buttonSubmit){
+            checkKosong();
+//            saveContent();
+//            Intent i = new Intent(context, SurveyKonsumenActivity.class);
+//            startActivity(i);
+        }
+        else if (a == R.id.buttonBack){
+            AlertDialog.Builder option = new AlertDialog.Builder(context);
+            option.setMessage("Apakah Anda yakin ingin membatalkan input survey ini dan kembali ke Menu ?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            backKeHome();
+                        }
+                    }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            }).setCancelable(true);
+            AlertDialog showOption = option.create();
+            showOption.show();
         }
     }
 
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+        AlertDialog.Builder option = new AlertDialog.Builder(context);
+        option.setMessage("Apakah Anda yakin ingin membatalkan input survey ini dan kembali ke Menu ?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backKeHome();
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).setCancelable(true);
+        AlertDialog showOption = option.create();
+        showOption.show();
+    }
+
+    private void backKeHome(){
         Intent intent = new Intent(context, HomeCMOActivity.class);
         startActivity(intent);
         finish();

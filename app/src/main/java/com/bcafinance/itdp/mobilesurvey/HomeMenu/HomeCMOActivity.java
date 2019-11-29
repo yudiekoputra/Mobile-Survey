@@ -48,6 +48,7 @@ public class HomeCMOActivity extends AppCompatActivity {
 //        final ResponseLogin text = responseLogin;
 //        Bundle extra = getIntent().getExtras();
         String text = SessionManager.getPosition(context);
+//        String text = responseLogin.getUser();
         username.setText(text);
 
         buttonInputForm = findViewById(R.id.buttonInputForm);

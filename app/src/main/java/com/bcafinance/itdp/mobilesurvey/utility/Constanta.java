@@ -15,6 +15,8 @@ public class Constanta {
     public static String KEY_FLAG_LOGIN = "login_flag";
     public static String KEY_USERNAME = "username";
     public static String POSITION = "position";
+    public static String TOKEN = "token";
+    public static String USER = "user";
 
     public static String ID_EXTRA_NIP = "NIP";
 

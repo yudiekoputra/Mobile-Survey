@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -45,7 +46,9 @@ import java.util.TimerTask;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Converter;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = this;
@@ -55,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button buttonLogin;
     private int counter_back = 1;
     RequestAPIServices apiServices;
+    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +87,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                         loading.dismiss();
                         if (response.code()==200) {
-                            List<ResponseLogin>token = new ArrayList<>();
-                            ResponseLogin newResponse = response.body();
-                            String position = newResponse.getPosition();
+                            ResponseLogin newResponse = new ResponseLogin();
+                            newResponse.setUser(response.body().getUser());
+                            String position = response.body().getPosition();
+                            String token = response.body().getAccessToken();
+                            String user = response.body().getUser();
+
+//                            String position = newResponse.getPosition();
                             if (position.equals("MO")){
                                 Intent intent = new Intent(context, HomeCMOActivity.class);
 //                                intent.putExtra("position", "CMO");
@@ -99,9 +107,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                                intent.putExtra("position", "RM");
                                 startActivity(intent);
                             }
-                            SessionManager.savePosition(context, position);
-                        }else {
+                            SessionManager.saveResponLogin(context, token, user, position);
+                        }else if (response.code()==400) {
                             Toast.makeText(context, "Username or Password is incorrect", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(context, "Gagal Login", Toast.LENGTH_SHORT).show();
                         }
                     }
 

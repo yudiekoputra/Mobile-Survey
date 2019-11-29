@@ -1,12 +1,21 @@
 package com.bcafinance.itdp.mobilesurvey.helper;
 
 import com.bcafinance.itdp.mobilesurvey.ResponseLogin;
+import com.google.gson.JsonObject;
+
+import org.json.JSONObject;
+
+import java.nio.charset.Charset;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -17,9 +26,10 @@ public interface RequestAPIServices {
                                     @Field("password") String password,
                                     @Field("grant_type")String grant_type);
 
-    @FormUrlEncoded
-    @POST("API/AddKonsumen")
-    Call<AddKonsumen>addKonsumen(@Field("userid") String userId,
-                                 @Field("MobileID") String mobileID);
+//    @POST("API/AddKonsumen")
+//    Call<AddKonsumen> addKonsumen(@Body AddKonsumen body);
 
+    @POST("API/AddKonsumen")
+    Call<AddKonsumen> addKonsumen(@Header("Authorization") String token,
+                                 @Body AddKonsumen body);
 }
