@@ -103,14 +103,14 @@ public class HistoryCMOActivity extends AppCompatActivity {
     private void backKeHome(){
 //        Bundle extra = getIntent().getExtras();
         String text = SessionManager.getPosition(context);
-        if (text.equals("CMO")){
-            Intent intent = new Intent(context, HomeCMOActivity.class);
-            startActivity(intent);
-        }else if (text.equals("BM")) {
+        if (text.equals("BM")) {
             Intent intent = new Intent(context, HomeBMActivity.class);
             startActivity(intent);
         }else if (text.equals("RM")) {
             Intent intent = new Intent(context, HomeRMActivity.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(context, HomeCMOActivity.class);
             startActivity(intent);
         }
         finish();

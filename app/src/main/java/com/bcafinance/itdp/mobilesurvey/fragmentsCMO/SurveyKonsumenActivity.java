@@ -1,12 +1,11 @@
 package com.bcafinance.itdp.mobilesurvey.fragmentsCMO;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,27 +23,28 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
 //import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.Edit_Form_Survey.FormSurveyKonsumenEdit;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
 import com.bcafinance.itdp.mobilesurvey.helper.BitmapHelper;
 import com.bcafinance.itdp.mobilesurvey.helper.Datum;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
+import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.bumptech.glide.Glide;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SurveyKonsumenActivity extends AppCompatActivity {
     private Context context = this;
@@ -54,25 +54,23 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
     private Button buttonSubmitSurveyKonsumen, buttonBack, buttonCamera9, buttonCamera10, buttonCamera11, buttonCamera12;
     private ImageView imageKtp, imageKtpSelfie, imageSelfieCmoKonsumen, imageSelfieCmoRumah;
     private RadioButton surveyRumah, surveyUsaha;
-    Datum datum;
+    RequestAPIServices apiServices;
 
     private int REQUEST_CODE_CAMERA9 = 9;
     private int REQUEST_CODE_CAMERA10 = 10;
     private int REQUEST_CODE_CAMERA11 = 11;
     private int REQUEST_CODE_CAMERA12 = 12;
 
-    private StorageReference reference;
-    private DatabaseReference dbase;
     private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_konsumen);
-//        reference = FirebaseStorage.getInstance().getReference();
-//        dbase = FirebaseDatabase.getInstance().getReference();
-        progressBar = findViewById(R.id.progressBar);
+        apiServices = APIUtilities.getAPIServices();
+        generatekodeSurvey();
 
+        progressBar = findViewById(R.id.progressBar);
 
         pertanyaanSatu = findViewById(R.id.pertanyaanSatu);
         pertanyaanDua = findViewById(R.id.pertanyaanDua);
@@ -81,7 +79,6 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         warna = findViewById(R.id.warna);
         tahunKendaraan = findViewById(R.id.tahunKendaraan);
         jenisKredit = findViewById(R.id.jenisKredit);
-        jenisKredit.setText(datum.getMobileID());
         totalAngsuran = findViewById(R.id.totalAngsuran);
         totalPenghasilan = findViewById(R.id.totalPenghasilan);
         pertanyaanLima = findViewById(R.id.pertanyaanLima);
@@ -117,23 +114,23 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         buttonSubmitSurveyKonsumen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (surveyRumah.isChecked()){
-                    Intent intent = new Intent(context, SurveyRumahActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else {
-                    Intent intent = new Intent(context, SurveyUsahaActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-//                saveSurveyKonsumen();
+//                if (surveyRumah.isChecked()){
+//                    Intent intent = new Intent(context, SurveyRumahActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }else {
+//                    Intent intent = new Intent(context, SurveyUsahaActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+                saveSurveyKonsumen();
             }
         });
         buttonBack = findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, InputSurveyActivity.class);
+                Intent intent = new Intent(context, HomeCMOActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -143,37 +140,120 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
 
     }
 
-    private void saveSurveyKonsumen(){
-//        String pertanyaanSatuValue = ((RadioButton)findViewById(pertanyaanSatu.getCheckedRadioButtonId())).getText().toString();
-//        String pertanyaanDuaValue = pertanyaanDua.getSelectedItem().toString();
-//        String platNomorValue = ((RadioButton)findViewById(platNomor.getCheckedRadioButtonId())).getText().toString();
-//        String merkTipeValue = ((RadioButton)findViewById(merkTipe.getCheckedRadioButtonId())).getText().toString();
-//        String warnaValue = ((RadioButton)findViewById(warna.getCheckedRadioButtonId())).getText().toString();
-//        String tahunKendaraanValue = ((RadioButton)findViewById(tahunKendaraan.getCheckedRadioButtonId())).getText().toString();
-//        String jenisKreditValue = jenisKredit.getText().toString();
-//        String totalAngsuranValue = totalAngsuran.getText().toString();
-//        String totalPenghasilanValue = totalPenghasilan.getText().toString();
-//        String pertanyaanLimaValue = pertanyaanLima.getSelectedItem().toString();
-//
-//        SessionManager.saveSurveyKonsumen(context, pertanyaanSatuValue, pertanyaanDuaValue, platNomorValue, merkTipeValue, warnaValue,
-//                tahunKendaraanValue, jenisKreditValue, totalAngsuranValue, totalPenghasilanValue, pertanyaanLimaValue);
-//
-//        uploadImage9();
-//        uploadImage10();
-//        uploadImage11();
-//        uploadImage12();
-//        Intent intent = new Intent(context, FormSurveyRumahKonsumen.class);
-//        View view = null;
+    private void generatekodeSurvey(){
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
 
-//        else if (){
-//            Intent intent = new Intent(context, SurveyRumahActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }else if (pilihSurvey.getCheckedRadioButtonId()==1){
-//            Intent intent = new Intent(context, SurveyUsahaActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+        String token = SessionManager.getToken(context);
+
+        AddSurvey addSurvey = new AddSurvey();
+        addSurvey.setKodeKonsumen(SessionManager.getKodeKonsumen(context));
+        addSurvey.setJenisSurvey("Konsumen");
+
+        apiServices.addSurvey("bearer "+token, addSurvey).enqueue(new Callback<AddSurvey>() {
+            @Override
+            public void onResponse(Call<AddSurvey> call, Response<AddSurvey> response) {
+                loading.dismiss();
+                if (response.code()==200){
+                    String kodeSurvey = response.body().getData().getDataID();
+                    SessionManager.saveKodeSurvey(context, kodeSurvey);
+//                    Toast.makeText(context, "kodeSurvey: "+kodeSurvey, Toast.LENGTH_LONG).show();
+                }else {
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddSurvey> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Ulangi", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    private void saveSurveyKonsumen(){
+        String pertanyaanSatuCode = "SK001";
+        String pertanyaanDuaCode = "SK002";
+        String pertanyaanTigaCode = "SK003";
+        String pertanyaanTigaPlatNomerCode = "DK001";
+        String pertanyaanTigaWarnaCode = "DK002";
+        String pertanyaanTigaMerkTipeCode = "DK003";
+        String pertanyaanTigaTahunCode = "DK004";
+        String pertanyaanEmpatCode = "SK004";
+        String pertanyaanEmpatAnswer = "1";
+        String pertanyaanEmpatJenisKreditCode = "AL001";
+        String pertanyaanEmpatAngsuranCode = "AL002";
+        String pertanyaanEmpaPenghasilanCode = "AL003";
+        String pertanyaanLimaCode = "SK005";
+
+        RadioButton sk00101 = findViewById(R.id.sk00101);
+        RadioButton sk00102 = findViewById(R.id.sk00102);
+        String pertanyaanSatuAnswer =null;
+        if (sk00101.isChecked()){
+            pertanyaanSatuAnswer = "1";
+        }else if (sk00102.isChecked()){
+            pertanyaanSatuAnswer ="2";
+        }else{}
+
+        String pertanyaanDuaAnswer = null;
+        if (pertanyaanDua.getSelectedItemPosition()==1){
+            pertanyaanDuaAnswer ="1";
+        }else if (pertanyaanDua.getSelectedItemPosition()==2){
+            pertanyaanDuaAnswer="2";
+        }else if (pertanyaanDua.getSelectedItemPosition()==3){
+            pertanyaanDuaAnswer="3";
+        }else{ }
+
+        RadioButton dk00101 = findViewById(R.id.dk00101);
+        RadioButton dk00102 = findViewById(R.id.dk00102);
+        String pertanyaanTigaPlatNomerAnswer = null;
+        if (dk00101.isChecked()){
+            pertanyaanTigaPlatNomerAnswer = "1";
+        }else if (dk00102.isChecked()){
+            pertanyaanTigaPlatNomerAnswer ="2";
+        }else{}
+
+        RadioButton dk00201 = findViewById(R.id.dk00201);
+        RadioButton dk00202 = findViewById(R.id.dk00202);
+        String pertanyaanTigaWarnaAnswer = null;
+        if (dk00201.isChecked()){
+            pertanyaanTigaWarnaAnswer = "1";
+        }else if (dk00202.isChecked()){
+            pertanyaanTigaWarnaAnswer ="2";
+        }else{}
+
+        RadioButton dk00301 = findViewById(R.id.dk00301);
+        RadioButton dk00302 = findViewById(R.id.dk00302);
+        String pertanyaanTigaMerkTipeAnswer = null;
+        if (dk00301.isChecked()){
+            pertanyaanTigaMerkTipeAnswer = "1";
+        }else if (dk00302.isChecked()){
+            pertanyaanTigaMerkTipeAnswer ="2";
+        }else{}
+
+        RadioButton dk00401 = findViewById(R.id.dk00401);
+        RadioButton dk00402 = findViewById(R.id.dk00402);
+        String pertanyaanTigaTahunAnswer = null;
+        if (dk00401.isChecked()){
+            pertanyaanTigaTahunAnswer = "1";
+        }else if (dk00402.isChecked()){
+            pertanyaanTigaTahunAnswer ="2";
+        }else{}
+
+        String pertanyaanEmpatJenisKreditAnswer = jenisKredit.getText().toString();
+        String pertanyaanEmpatAngsuranAnswer = totalAngsuran.getText().toString();
+        String pertanyaanEmpatPenghasilanAnswer = totalPenghasilan.getText().toString();
+
+        String pertanyaanLimaAnswer = null;
+        if (pertanyaanLima.getSelectedItemPosition()==1){
+            pertanyaanLimaAnswer ="1";
+        }else if (pertanyaanLima.getSelectedItemPosition()==2){
+            pertanyaanLimaAnswer="2";
+        }else if (pertanyaanLima.getSelectedItemPosition()==3){
+            pertanyaanLimaAnswer="3";
+        }else{ }
+
     }
 
     private void setSpinnerData() {
@@ -306,27 +386,27 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage10(){
@@ -344,27 +424,27 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage11(){
@@ -382,27 +462,27 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage12(){
@@ -420,26 +500,26 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 }

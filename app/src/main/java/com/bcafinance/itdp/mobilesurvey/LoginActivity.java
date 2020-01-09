@@ -96,12 +96,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (position.equals("MO")){
                                 Intent intent = new Intent(context, HomeCMOActivity.class);
                                 startActivity(intent);
+                                finish();
                             }else if (position.equals("BM")){
                                 Intent intent = new Intent(context, HomeBMActivity.class);
                                 startActivity(intent);
+                                finish();
                             }else if (position.equals("RM")){
                                 Intent intent = new Intent(context, HomeRMActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                             SessionManager.saveResponLogin(context, token, user, position);
                         }else if (response.code()==400) {
@@ -148,9 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onBackPressed() {
 //        super.onBackPressed();
         if(counter_back<2){
-            Toast.makeText(context, "Tekan Back sekali lagi untuk keluar", Toast.LENGTH_SHORT).show();
-            counter_back++;
-            countdownReset();
+            finish();
         }else if(counter_back==2){
             finish();
         }

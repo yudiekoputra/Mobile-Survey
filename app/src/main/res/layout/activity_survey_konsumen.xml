@@ -42,11 +42,13 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/sk00101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="Tersambung"/>
                 <RadioButton
+                    android:id="@+id/sk00102"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -117,10 +119,12 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/dk00101"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tahu"/>
                         <RadioButton
+                            android:id="@+id/dk00102"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -153,10 +157,12 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/dk00301"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tahu"/>
                         <RadioButton
+                            android:id="@+id/dk00302"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -195,10 +201,12 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/dk00201"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tahu"/>
                         <RadioButton
+                            android:id="@+id/dk00202"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -231,10 +239,12 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/dk00401"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tahu"/>
                         <RadioButton
+                            android:id="@+id/dk00402"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -484,7 +494,7 @@ tools:context=".fragmentsCMO.SurveyKonsumenActivity">
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="BACK" />
+                    android:text="HOME" />
 
                 <Button
                     android:id="@+id/buttonSubmitSurveyKonsumen"

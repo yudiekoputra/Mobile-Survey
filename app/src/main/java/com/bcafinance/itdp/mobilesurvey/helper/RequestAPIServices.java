@@ -1,6 +1,7 @@
 package com.bcafinance.itdp.mobilesurvey.helper;
 
 import com.bcafinance.itdp.mobilesurvey.ResponseLogin;
+import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
@@ -32,4 +33,8 @@ public interface RequestAPIServices {
 
     @GET("API/getHistoryKonsumen")
     Call<HistoryKonsumen>historyKonsumen(@Header("Authorization") String token);
+
+    @POST("/API/AddSurvey")
+    Call<AddSurvey> addSurvey(@Header("Authorization") String token,
+                              @Body AddSurvey body);
 }

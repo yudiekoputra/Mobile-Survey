@@ -33,6 +33,12 @@ public class SessionManager {
         editor.putString(Constanta.KODEKONSUMEN, kodeKonsumen);
         editor.commit();
     }
+
+    public static void saveKodeSurvey(Context context, String kodeSurvey){
+        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
+        editor.putString(Constanta.KODESURVEY, kodeSurvey);
+        editor.commit();
+    }
     public static void saveResponLogin(Context context, String token, String user, String position){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
         editor.putString(Constanta.TOKEN, token);
@@ -218,6 +224,10 @@ public class SessionManager {
 
     public static String getKodeKonsumen(Context context){
         return retrieveSharedPreferences(context).getString(Constanta.KODEKONSUMEN, "");
+    }
+
+    public static String getKodeSurvey(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.KODESURVEY, "");
     }
 
     //ambil username
