@@ -2,6 +2,7 @@ package com.bcafinance.itdp.mobilesurvey.helper;
 
 import com.bcafinance.itdp.mobilesurvey.ResponseLogin;
 import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.EditSurvey;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
@@ -37,4 +38,8 @@ public interface RequestAPIServices {
     @POST("/API/AddSurvey")
     Call<AddSurvey> addSurvey(@Header("Authorization") String token,
                               @Body AddSurvey body);
+
+    @POST("/API/EditSurvey")
+    Call<EditSurvey> editSurvey(@Header("Authorization") String token,
+                              @Body EditSurvey body);
 }

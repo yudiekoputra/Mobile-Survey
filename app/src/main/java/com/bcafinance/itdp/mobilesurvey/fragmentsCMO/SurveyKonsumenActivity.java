@@ -29,7 +29,11 @@ import com.bcafinance.itdp.mobilesurvey.R;
 import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
 import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
 import com.bcafinance.itdp.mobilesurvey.helper.BitmapHelper;
-import com.bcafinance.itdp.mobilesurvey.helper.Datum;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.DataQuest;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.EditSurvey;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.Narasumber1;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.Narasumber2;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.SubQuest;
 import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
@@ -38,8 +42,11 @@ import com.bumptech.glide.Glide;
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.gson.JsonObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import retrofit2.Call;
@@ -184,7 +191,7 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         String pertanyaanEmpatAnswer = "1";
         String pertanyaanEmpatJenisKreditCode = "AL001";
         String pertanyaanEmpatAngsuranCode = "AL002";
-        String pertanyaanEmpaPenghasilanCode = "AL003";
+        String pertanyaanEmpatPenghasilanCode = "AL003";
         String pertanyaanLimaCode = "SK005";
 
         RadioButton sk00101 = findViewById(R.id.sk00101);
@@ -253,6 +260,130 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         }else if (pertanyaanLima.getSelectedItemPosition()==3){
             pertanyaanLimaAnswer="3";
         }else{ }
+
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
+        String token = SessionManager.getToken(context);
+
+        List<Narasumber2> narasumber2 = new ArrayList<>();
+
+        List<Narasumber1> narasumber1 = new ArrayList<>();
+
+        List<SubQuest> subQuest = new ArrayList<>();
+        List<SubQuest> subQuestTiga = new ArrayList<>();
+        List<SubQuest> subQuestEmpat = new ArrayList<>();
+
+        SubQuest subQuest1 = new SubQuest();
+        subQuest1.setPertanyaan(pertanyaanTigaPlatNomerCode);
+        subQuest1.setPilihan(pertanyaanTigaPlatNomerAnswer);
+        subQuest1.setKeterangan("");
+
+        SubQuest subQuest2 = new SubQuest();
+        subQuest2.setPertanyaan(pertanyaanTigaWarnaCode);
+        subQuest2.setPilihan(pertanyaanTigaWarnaAnswer);
+        subQuest2.setKeterangan("");
+
+        SubQuest subQuest3 = new SubQuest();
+        subQuest3.setPertanyaan(pertanyaanTigaMerkTipeCode);
+        subQuest3.setPilihan(pertanyaanTigaMerkTipeAnswer);
+        subQuest3.setKeterangan("");
+
+        SubQuest subQuest4 = new SubQuest();
+        subQuest4.setPertanyaan(pertanyaanTigaTahunCode);
+        subQuest4.setPilihan(pertanyaanTigaTahunAnswer);
+        subQuest4.setKeterangan("");
+
+        subQuestTiga.add(subQuest1);
+        subQuestTiga.add(subQuest2);
+        subQuestTiga.add(subQuest3);
+        subQuestTiga.add(subQuest4);
+
+        SubQuest subQuest5 = new SubQuest();
+        subQuest5.setPertanyaan(pertanyaanEmpatJenisKreditCode);
+        subQuest5.setPilihan(pertanyaanEmpatAnswer);
+        subQuest5.setKeterangan(pertanyaanEmpatJenisKreditAnswer);
+
+        SubQuest subQuest6 = new SubQuest();
+        subQuest6.setPertanyaan(pertanyaanEmpatAngsuranCode);
+        subQuest6.setPilihan(pertanyaanEmpatAnswer);
+        subQuest6.setKeterangan(pertanyaanEmpatAngsuranAnswer);
+
+        SubQuest subQuest7 = new SubQuest();
+        subQuest7.setPertanyaan(pertanyaanEmpatPenghasilanCode);
+        subQuest7.setPilihan(pertanyaanEmpatAnswer);
+        subQuest7.setKeterangan(pertanyaanEmpatPenghasilanAnswer);
+
+        subQuestEmpat.add(subQuest5);
+        subQuestEmpat.add(subQuest6);
+        subQuestEmpat.add(subQuest7);
+
+        List<DataQuest> dataQuest = new ArrayList<>();
+
+        DataQuest dataQuest1 = new DataQuest();
+        dataQuest1.setCodeQuest(pertanyaanSatuCode);
+        dataQuest1.setAnswer(pertanyaanSatuAnswer);
+        dataQuest1.setDesc("");
+        dataQuest1.setSubQuest(subQuest);
+
+        DataQuest dataQuest2 = new DataQuest();
+        dataQuest2.setCodeQuest(pertanyaanDuaCode);
+        dataQuest2.setAnswer(pertanyaanDuaAnswer);
+        dataQuest2.setDesc("");
+        dataQuest2.setSubQuest(subQuest);
+
+        DataQuest dataQuest3 = new DataQuest();
+        dataQuest3.setCodeQuest(pertanyaanTigaCode);
+        dataQuest3.setAnswer("");
+        dataQuest3.setDesc("");
+        dataQuest3.setSubQuest(subQuestTiga);
+
+        DataQuest dataQuest4 = new DataQuest();
+        dataQuest4.setCodeQuest(pertanyaanEmpatCode);
+        dataQuest4.setAnswer("");
+        dataQuest4.setDesc("");
+        dataQuest4.setSubQuest(subQuestEmpat);
+
+        DataQuest dataQuest5 = new DataQuest();
+        dataQuest5.setCodeQuest(pertanyaanLimaCode);
+        dataQuest5.setAnswer(pertanyaanLimaAnswer);
+        dataQuest5.setDesc("");
+        dataQuest5.setSubQuest(subQuest);
+
+        dataQuest.add(dataQuest1);
+        dataQuest.add(dataQuest2);
+        dataQuest.add(dataQuest3);
+        dataQuest.add(dataQuest4);
+        dataQuest.add(dataQuest5);
+
+        EditSurvey editSurvey = new EditSurvey();
+        editSurvey.setCodeSurvey(SessionManager.getKodeSurvey(context));
+        editSurvey.setLatitude("");
+        editSurvey.setLongitude("");
+        editSurvey.setAlamat("");
+        editSurvey.setDataQuest(dataQuest);
+        editSurvey.setNarasumber1(narasumber1);
+        editSurvey.setNarasumber2(narasumber2);
+
+        apiServices.editSurvey("bearer "+token, editSurvey).enqueue(new Callback<EditSurvey>() {
+            @Override
+            public void onResponse(Call<EditSurvey> call, Response<EditSurvey> response) {
+                loading.dismiss();
+                if (response.code()==200){
+//                    String kodeSurvey = response.body().getData().getDataID();
+//                    SessionManager.saveKodeSurvey(context, kodeSurvey);
+                    Toast.makeText(context, "Data berhasil di save", Toast.LENGTH_LONG).show();
+                }else {
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditSurvey> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Ulangi", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 
