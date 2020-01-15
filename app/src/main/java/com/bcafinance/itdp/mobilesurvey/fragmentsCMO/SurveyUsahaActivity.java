@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,11 +32,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
 import com.bcafinance.itdp.mobilesurvey.customs.CustomExpandCollapseBar;
 //import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.Edit_Form_Survey.FormIdentitasKonsumenEdit;
+import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
 import com.bcafinance.itdp.mobilesurvey.helper.BitmapHelper;
+import com.bcafinance.itdp.mobilesurvey.helper.CloseSurvey.CloseSurvey;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.DataQuest;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.EditSurvey;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.Narasumber1;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.Narasumber2;
+import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.SubQuest;
+import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
+import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 import com.bumptech.glide.Glide;
 import com.esafirm.imagepicker.features.ImagePicker;
@@ -57,11 +69,15 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 import mumayank.com.airlocationlibrary.AirLocation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
     private Context context = this;
@@ -70,7 +86,7 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
     private CustomExpandCollapseBar expandCollapseBar;
     private Spinner pertanyaanDuaDelapan, pertanyaanDuaSembilan, pertanyaanTigaPuluh, pertanyaanTigaSatu, pertanyaanTigaDua, pertanyaanTigaTiga, pertanyaanTigaEmpat, pertanyaanTigaLima;
     private EditText namaNarasumber1, jawabanTigaDua, jawabanTigaTiga, namaNarasumber2, jawabanTigaEmpat, jawabanTigaLima, jawabanDuaDelapan, jawabanDuaSembilan, namaTempatUsaha, alamatUsaha, kelurahanUsaha, kecamatanUsaha, kodePosUsaha;
-    private Button buttonNarasumber, buttonSubmitUsaha, buttonBack, buttonCamera5, buttonCamera6, buttonCamera7, buttonCamera8;
+    private Button buttonSubmitUsaha, buttonBack, buttonCamera5, buttonCamera6, buttonCamera7, buttonCamera8;
     private ImageView imageUsaha1, imageUsaha2, imageJalanUsaha1, imageJalanUsaha2;
 
     private int REQUEST_CODE_CAMERA5 = 5;
@@ -81,16 +97,15 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
     private AirLocation airLocation2;
     private GoogleMap mMap;
     LocationManager locationManager;
-    private StorageReference reference;
-    private DatabaseReference dbase;
     private ProgressBar progressBar;
+    RequestAPIServices apiServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_usaha);
-        reference = FirebaseStorage.getInstance().getReference();
-        dbase = FirebaseDatabase.getInstance().getReference();
+        apiServices = APIUtilities.getAPIServices();
+        generatekodeSurvey();
         progressBar = findViewById(R.id.progressBar);
 
         jawabanDuaDelapan = findViewById(R.id.jawabanDuaDelapan);
@@ -225,46 +240,272 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
         });
 
     }
+
+    private void generatekodeSurvey(){
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
+
+        String token = SessionManager.getToken(context);
+
+        AddSurvey addSurvey = new AddSurvey();
+        addSurvey.setKodeKonsumen(SessionManager.getKodeKonsumen(context));
+        addSurvey.setJenisSurvey("TempatUsaha");
+
+        apiServices.addSurvey("bearer "+token, addSurvey).enqueue(new Callback<AddSurvey>() {
+            @Override
+            public void onResponse(Call<AddSurvey> call, Response<AddSurvey> response) {
+                loading.dismiss();
+                if (response.code()==200){
+                    String kodeSurvey = response.body().getData().getDataID();
+                    SessionManager.saveKodeSurveyTempatUsaha(context, kodeSurvey);
+//                    Toast.makeText(context, "kodeSurvey: "+kodeSurvey, Toast.LENGTH_LONG).show();
+                }else {
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddSurvey> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
     private void saveFotoRumah(){
+        String pertanyaanDuaDelapanCode = "UK001";
+        String pertanyaanDuaSembilanCode = "UK002";
+        String pertanyaanTigaPuluhCode = "UK003";
+        String pertanyaanTigaSatuCode = "UK004";
+
         String namaAlamatUsahaValue = namaAlamatUsaha.getText().toString();
         String latitude2Value = latitudeUsaha.getText().toString();
         String longitude2Value = longitudeUsaha.getText().toString();
-        SessionManager.saveUsahaKonsumen(context, namaAlamatUsahaValue, latitude2Value, longitude2Value);
 
-        String pertanyaanDuaDelapanValue = pertanyaanDuaDelapan.getSelectedItem().toString();
-        String pertanyaanDuaSembilanValue = pertanyaanDuaSembilan.getSelectedItem().toString();
-        String pertanyaanTigaPuluhValue = pertanyaanTigaPuluh.getSelectedItem().toString();
-        String pertanyaanTigaSatuValue = pertanyaanTigaSatu.getSelectedItem().toString();
+        String pertanyaanDuaDelapanAnswer = null;
+        if (pertanyaanDuaDelapan.getSelectedItemPosition()==1){
+            pertanyaanDuaDelapanAnswer="1";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==2){
+            pertanyaanDuaDelapanAnswer="2";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==3){
+            pertanyaanDuaDelapanAnswer="3";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==4){
+            pertanyaanDuaDelapanAnswer="4";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==5){
+            pertanyaanDuaDelapanAnswer="5";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==6){
+            pertanyaanDuaDelapanAnswer="6";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==7){
+            pertanyaanDuaDelapanAnswer="7";
+        }else if (pertanyaanDuaDelapan.getSelectedItemPosition()==8){
+            pertanyaanDuaDelapanAnswer="8";
+        }else{}
+
+        String pertanyaanDuaSembilanAnswer = null;
+        if (pertanyaanDuaSembilan.getSelectedItemPosition()==1){
+            pertanyaanDuaSembilanAnswer="1";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==2){
+            pertanyaanDuaSembilanAnswer="2";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==3){
+            pertanyaanDuaSembilanAnswer="3";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==4){
+            pertanyaanDuaSembilanAnswer="4";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==5){
+            pertanyaanDuaSembilanAnswer="5";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==6){
+            pertanyaanDuaSembilanAnswer="6";
+        }else if (pertanyaanDuaSembilan.getSelectedItemPosition()==7){
+            pertanyaanDuaSembilanAnswer="7";
+        }else{}
+
+        String pertanyaanTigaPuluhAnswer = null;
+        if (pertanyaanTigaPuluh.getSelectedItemPosition()==1){
+            pertanyaanTigaPuluhAnswer="1";
+        }else if (pertanyaanTigaPuluh.getSelectedItemPosition()==2){
+            pertanyaanTigaPuluhAnswer="2";
+        }else if (pertanyaanTigaPuluh.getSelectedItemPosition()==3){
+            pertanyaanTigaPuluhAnswer="3";
+        }else{}
+
+        String pertanyaanTigaSatuAnswer = null;
+        if (pertanyaanTigaSatu.getSelectedItemPosition()==1){
+            pertanyaanTigaSatuAnswer="1";
+        }else if (pertanyaanTigaSatu.getSelectedItemPosition()==2){
+            pertanyaanTigaSatuAnswer="2";
+        }else if (pertanyaanTigaSatu.getSelectedItemPosition()==3){
+            pertanyaanTigaSatuAnswer="3";
+        }else if (pertanyaanTigaSatu.getSelectedItemPosition()==4){
+            pertanyaanTigaSatuAnswer="4";
+        }else{}
+
         String jawabanDuaDelapanValue = jawabanDuaDelapan.getText().toString();
         String jawabanDuaSembilanValue = jawabanDuaSembilan.getText().toString();
 
-        SessionManager.savePengamatanSurveyor(context, pertanyaanDuaDelapanValue, pertanyaanDuaSembilanValue, pertanyaanTigaPuluhValue, pertanyaanTigaSatuValue,
-                jawabanDuaDelapanValue, jawabanDuaSembilanValue);
+        String narasumberSatu = "NS01";
+        String pertanyaanTigaDuaCode = "NS008";
+        String pertanyaanTigaTigaCode = "NS009";
+        String namaNarasumberCode = "NS010";
+        String narasumberDua = "NS02";
+        String pertanyaanTigaEmpatCode = "NS008";
+        String pertanyaanTigaLimaCode = "NS009";
 
-        String pertanyaanTigaDuaValue = pertanyaanTigaDua.getSelectedItem().toString();
-        String pertanyaanTigaTigaValue = pertanyaanTigaTiga.getSelectedItem().toString();
-        String pertanyaanTigaEmpatValue = pertanyaanTigaEmpat.getSelectedItem().toString();
-        String pertanyaanTigaLimaValue = pertanyaanTigaLima.getSelectedItem().toString();
+        String pertanyaanTigaDuaAnswer = null;
+        if (pertanyaanTigaDua.getSelectedItemPosition()==1){
+            pertanyaanTigaDuaAnswer="1";
+        }else if (pertanyaanTigaDua.getSelectedItemPosition()==2){
+            pertanyaanTigaDuaAnswer="2";
+        }else if (pertanyaanTigaDua.getSelectedItemPosition()==3){
+            pertanyaanTigaDuaAnswer="3";
+        }else if (pertanyaanTigaDua.getSelectedItemPosition()==4){
+            pertanyaanTigaDuaAnswer="4";
+        }else if (pertanyaanTigaDua.getSelectedItemPosition()==5){
+            pertanyaanTigaDuaAnswer="5";
+        }else if (pertanyaanTigaDua.getSelectedItemPosition()==6){
+            pertanyaanTigaDuaAnswer="6";
+        }else{}
+
+        String pertanyaanTigaTigaAnswer = null;
+        if (pertanyaanTigaTiga.getSelectedItemPosition()==1){
+            pertanyaanTigaTigaAnswer="1";
+        }else if (pertanyaanTigaTiga.getSelectedItemPosition()==2){
+            pertanyaanTigaTigaAnswer="2";
+        }else if (pertanyaanTigaTiga.getSelectedItemPosition()==3){
+            pertanyaanTigaTigaAnswer="3";
+        }else if (pertanyaanTigaTiga.getSelectedItemPosition()==4){
+            pertanyaanTigaTigaAnswer="4";
+        }else{}
+
         String jawabanTigaDuaValue = jawabanTigaDua.getText().toString();
         String jawabanTigaTigaValue = jawabanTigaTiga.getText().toString();
+        String namaNarasumber1Value = namaNarasumber1.getText().toString();
+
+        String pertanyaanTigaEmpatAnswer = null;
+        if (pertanyaanTigaEmpat.getSelectedItemPosition()==1){
+            pertanyaanTigaEmpatAnswer="1";
+        }else if (pertanyaanTigaEmpat.getSelectedItemPosition()==2){
+            pertanyaanTigaEmpatAnswer="2";
+        }else if (pertanyaanTigaEmpat.getSelectedItemPosition()==3){
+            pertanyaanTigaEmpatAnswer="3";
+        }else if (pertanyaanTigaEmpat.getSelectedItemPosition()==4){
+            pertanyaanTigaEmpatAnswer="4";
+        }else if (pertanyaanTigaEmpat.getSelectedItemPosition()==5){
+            pertanyaanTigaEmpatAnswer="5";
+        }else if (pertanyaanTigaEmpat.getSelectedItemPosition()==6){
+            pertanyaanTigaEmpatAnswer="6";
+        }else{}
+
+        String pertanyaanTigaLimaAnswer = null;
+        if (pertanyaanTigaLima.getSelectedItemPosition()==1){
+            pertanyaanTigaLimaAnswer="1";
+        }else if (pertanyaanTigaLima.getSelectedItemPosition()==2){
+            pertanyaanTigaLimaAnswer="2";
+        }else if (pertanyaanTigaLima.getSelectedItemPosition()==3){
+            pertanyaanTigaLimaAnswer="3";
+        }else if (pertanyaanTigaLima.getSelectedItemPosition()==4){
+            pertanyaanTigaLimaAnswer="4";
+        }else{}
+
         String jawabanTigaEmpatValue = jawabanTigaEmpat.getText().toString();
         String jawabanTigaLimaValue = jawabanTigaLima.getText().toString();
-        String namaNarasumber3Value = namaNarasumber1.getText().toString();
-        String namaNarasumber4Value = namaNarasumber2.getText().toString();
+        String namaNarasumber2Value = namaNarasumber2.getText().toString();
 
-        SessionManager.saveSurveyLingkunganUsaha(context, pertanyaanTigaDuaValue, pertanyaanTigaTigaValue, pertanyaanTigaEmpatValue, pertanyaanTigaLimaValue, jawabanTigaDuaValue,
-                jawabanTigaTigaValue, jawabanTigaEmpatValue, jawabanTigaLimaValue, namaNarasumber3Value, namaNarasumber4Value);
+        List<Narasumber2> narasumber2List = new ArrayList<>();
+        List<Narasumber1> narasumber1List = new ArrayList<>();
+        List<SubQuest> subQuest = new ArrayList<>();
 
-        uploadImage5();
-        uploadImage6();
-        uploadImage7();
-        uploadImage8();
+        List<DataQuest> dataQuest = new ArrayList<>();
 
-        Intent intent = new Intent(context, InputSurveyActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        finish();
+        DataQuest dataQuest1 = new DataQuest();
+        dataQuest1.setCodeQuest(pertanyaanDuaDelapanCode);
+        dataQuest1.setAnswer(pertanyaanDuaDelapanAnswer);
+        dataQuest1.setDesc(jawabanDuaDelapanValue);
+        dataQuest1.setSubQuest(subQuest);
+
+        DataQuest dataQuest2 = new DataQuest();
+        dataQuest2.setCodeQuest(pertanyaanDuaSembilanCode);
+        dataQuest2.setAnswer(pertanyaanDuaSembilanAnswer);
+        dataQuest2.setDesc(jawabanDuaSembilanValue);
+        dataQuest2.setSubQuest(subQuest);
+
+        DataQuest dataQuest3 = new DataQuest();
+        dataQuest3.setCodeQuest(pertanyaanTigaPuluhCode);
+        dataQuest3.setAnswer(pertanyaanTigaPuluhAnswer);
+        dataQuest3.setDesc("");
+        dataQuest3.setSubQuest(subQuest);
+
+        DataQuest dataQuest4 = new DataQuest();
+        dataQuest4.setCodeQuest(pertanyaanTigaSatuCode);
+        dataQuest4.setAnswer(pertanyaanTigaSatuAnswer);
+        dataQuest4.setDesc("");
+        dataQuest4.setSubQuest(subQuest);
+
+        dataQuest.add(dataQuest1);
+        dataQuest.add(dataQuest2);
+        dataQuest.add(dataQuest3);
+        dataQuest.add(dataQuest4);
+
+        EditSurvey editSurvey = new EditSurvey();
+        editSurvey.setCodeSurvey(SessionManager.getKodeSurveyRumahKonsumen(context));
+        editSurvey.setLatitude(latitude2Value);
+        editSurvey.setLongitude(longitude2Value);
+        editSurvey.setAlamat(namaAlamatUsahaValue);
+        editSurvey.setDataQuest(dataQuest);
+        editSurvey.setNarasumber1(narasumber1List);
+        editSurvey.setNarasumber2(narasumber2List);
+
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
+        String token = SessionManager.getToken(context);
+        apiServices.editSurvey("bearer "+token, editSurvey).enqueue(new Callback<EditSurvey>() {
+            @Override
+            public void onResponse(Call<EditSurvey> call, Response<EditSurvey> response) {
+                loading.dismiss();
+                if (response.code() == 200) {
+//                    String kodeSurvey = response.body().getData().getDataID();
+//                    SessionManager.saveKodeSurvey(context, kodeSurvey);
+//                    Toast.makeText(context, "Data berhasil di save", Toast.LENGTH_LONG).show();
+                    closeSurvey();
+                } else {
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EditSurvey> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+    private void closeSurvey(){
+        final ProgressDialog loading = LoadingClass.loadingAnimationCustom(context);
+        loading.show();
+        String token = SessionManager.getToken(context);
+        String kodeKonsumen = SessionManager.getKodeKonsumen(context);
+        apiServices.closeSurvey(kodeKonsumen, "bearer "+token).enqueue(new Callback<CloseSurvey>() {
+            @Override
+            public void onResponse(Call<CloseSurvey> call, Response<CloseSurvey> response) {
+                loading.dismiss();
+                if (response.code() == 200) {
+//                    String kodeSurvey = response.body().getData().getDataID();
+//                    SessionManager.saveKodeSurvey(context, kodeSurvey);
+                    Toast.makeText(context, "Data berhasil di save", Toast.LENGTH_LONG).show();
+                    backKeHome();
+                } else {
+                    loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CloseSurvey> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void setSpinnerData() {
         ArrayAdapter<String> adapterPertanyaanDuaDelapan = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, Constanta.PERTANYAAN_DUADELAPAN);
@@ -490,27 +731,27 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage6(){
@@ -528,27 +769,27 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage7(){
@@ -566,27 +807,27 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     private void uploadImage8(){
@@ -604,27 +845,27 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
         //lokasi gambar
         String namaFile = UUID.randomUUID()+".jpg";
         String pathImage = "gambar/"+namaFile;
-        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                progressBar.setProgress((int) progress);
-            }
-        });
+//        UploadTask uploadTask = reference.child(pathImage).putBytes(bytes);
+//        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Berhasil", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                progressBar.setVisibility(View.GONE);
+//                Toast.makeText(context, "Upload Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+//                progressBar.setVisibility(View.VISIBLE);
+//                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+//                progressBar.setProgress((int) progress);
+//            }
+//        });
     }
 
     @Override
@@ -658,5 +899,31 @@ public class SurveyUsahaActivity extends AppCompatActivity implements OnMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        AlertDialog.Builder option = new AlertDialog.Builder(context);
+        option.setMessage("Apakah Anda yakin ingin membatalkan input survey ini dan kembali ke Menu ?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backKeHome();
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).setCancelable(true);
+        AlertDialog showOption = option.create();
+        showOption.show();
+    }
+
+    private void backKeHome(){
+        Intent intent = new Intent(context, HomeCMOActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

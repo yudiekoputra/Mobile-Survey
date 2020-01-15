@@ -15,14 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bcafinance.itdp.mobilesurvey.R;
 //import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.FormKonfirmasiSurvey;
 import com.bcafinance.itdp.mobilesurvey.fragmentsCMO.ViewSurveyActivity;
+import com.bcafinance.itdp.mobilesurvey.helper.HistoryKonsumen.Datum;
+import com.bcafinance.itdp.mobilesurvey.helper.HistoryKonsumen.HistoryKonsumen;
 
 import java.util.ArrayList;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
-    private ArrayList<inputSurvey> listSurvey;
+    private ArrayList<Datum> listSurvey;
     private Context context;
 
-    public ListAdapter(ArrayList<inputSurvey> listSurvey, Context context){
+    public ListAdapter(ArrayList<Datum> listSurvey, Context context){
         this.listSurvey = listSurvey;
         this.context = context;
     }
@@ -37,21 +39,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
         final String namaKonsumen = listSurvey.get(position).getNamaKonsumen();
-        final String noTelp = listSurvey.get(position).getNoTelp();
-        final String alamatRumah = listSurvey.get(position).getAlamatRumah();
-        final String status = listSurvey.get(position).getStatus();
+        final String mobileId = listSurvey.get(position).getMobileID();
+        final String tanggalSurvey = listSurvey.get(position).getTanggalInput();
 
         holder.namaKonsumen.setText("Nama : "+namaKonsumen);
-        holder.noTelp.setText("No Telp : "+noTelp);
-        holder.alamatRumah.setText("Alamat : "+alamatRumah);
-        holder.status.setText(status);
+        holder.mobileId.setText("Mobile ID : "+mobileId);
+        holder.tanggalSurvey.setText("Tanggal Input : "+tanggalSurvey);
 
         holder.ListItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                TemporaryData.setDataListAdapter(listSurvey.get(position));
                 Bundle bundle = new Bundle();
-                bundle.putString("getPrimaryKey",listSurvey.get(position).getKey());
+                bundle.putString("getPrimaryKey",listSurvey.get(position).getMobileID());
 
 //                Intent intent = new Intent(v.getContext(), FormKonfirmasiSurvey.class);
                 Intent intent = new Intent(v.getContext(), ViewSurveyActivity.class);
@@ -69,16 +69,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView namaKonsumen, noTelp, alamatRumah, status;
+        private TextView namaKonsumen, mobileId, tanggalSurvey;
         private LinearLayout ListItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             namaKonsumen = itemView.findViewById(R.id.namaKonsumen);
-            noTelp = itemView.findViewById(R.id.noTelp);
-            alamatRumah = itemView.findViewById(R.id.alamatRumah);
+            mobileId = itemView.findViewById(R.id.mobileId);
+            tanggalSurvey = itemView.findViewById(R.id.tanggalInputSurvey);
             ListItem = itemView.findViewById(R.id.list_item);
-            status = itemView.findViewById(R.id.status);
         }
     }
 }

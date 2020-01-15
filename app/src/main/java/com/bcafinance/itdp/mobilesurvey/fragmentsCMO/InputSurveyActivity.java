@@ -1,7 +1,6 @@
 package com.bcafinance.itdp.mobilesurvey.fragmentsCMO;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -9,16 +8,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.hardware.Camera;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,34 +23,17 @@ import com.bcafinance.itdp.mobilesurvey.customs.CustomExpandCollapseBar;
 import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
 import com.bcafinance.itdp.mobilesurvey.helper.AddKonsumen;
 import com.bcafinance.itdp.mobilesurvey.helper.Data;
-import com.bcafinance.itdp.mobilesurvey.helper.Datum;
 import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
-import com.bcafinance.itdp.mobilesurvey.helper.RetrofitClient;
-import com.bcafinance.itdp.mobilesurvey.utility.Constanta;
 import com.bcafinance.itdp.mobilesurvey.utility.LoadingClass;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
 //import com.bcafinance.itdp.mobilesurvey.utility.input_survey;
-import com.bcafinance.itdp.mobilesurvey.utility.inputSurvey;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.text.TextUtils.isEmpty;
 
 public class InputSurveyActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = this;

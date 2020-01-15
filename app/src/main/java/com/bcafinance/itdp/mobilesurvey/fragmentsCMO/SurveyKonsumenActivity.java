@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -121,15 +122,15 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         buttonSubmitSurveyKonsumen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (surveyRumah.isChecked()){
-//                    Intent intent = new Intent(context, SurveyRumahActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }else {
-//                    Intent intent = new Intent(context, SurveyUsahaActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
+                if (surveyRumah.isChecked()){
+                    Intent intent = new Intent(context, SurveyRumahActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(context, SurveyUsahaActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
                 saveSurveyKonsumen();
             }
         });
@@ -163,7 +164,7 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
                 loading.dismiss();
                 if (response.code()==200){
                     String kodeSurvey = response.body().getData().getDataID();
-                    SessionManager.saveKodeSurvey(context, kodeSurvey);
+                    SessionManager.saveKodeSurveyKonsumen(context, kodeSurvey);
 //                    Toast.makeText(context, "kodeSurvey: "+kodeSurvey, Toast.LENGTH_LONG).show();
                 }else {
                     loading.dismiss();
@@ -356,7 +357,7 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
         dataQuest.add(dataQuest5);
 
         EditSurvey editSurvey = new EditSurvey();
-        editSurvey.setCodeSurvey(SessionManager.getKodeSurvey(context));
+        editSurvey.setCodeSurvey(SessionManager.getKodeSurveyKonsumen(context));
         editSurvey.setLatitude("");
         editSurvey.setLongitude("");
         editSurvey.setAlamat("");
@@ -380,7 +381,7 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<EditSurvey> call, Throwable t) {
                 loading.dismiss();
-                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Ulangi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Gagal Load Data sebelumnya, Mohon Periksa Koneksi Internet Anda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -652,5 +653,31 @@ public class SurveyKonsumenActivity extends AppCompatActivity {
 //                progressBar.setProgress((int) progress);
 //            }
 //        });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        AlertDialog.Builder option = new AlertDialog.Builder(context);
+        option.setMessage("Apakah Anda yakin ingin membatalkan input survey ini dan kembali ke Menu ?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        backKeHome();
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        }).setCancelable(true);
+        AlertDialog showOption = option.create();
+        showOption.show();
+    }
+
+    private void backKeHome(){
+        Intent intent = new Intent(context, HomeCMOActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

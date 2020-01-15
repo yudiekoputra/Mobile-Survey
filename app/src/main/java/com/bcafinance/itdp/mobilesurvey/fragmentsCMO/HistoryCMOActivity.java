@@ -18,6 +18,8 @@ import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeCMOActivity;
 import com.bcafinance.itdp.mobilesurvey.HomeMenu.HomeRMActivity;
 import com.bcafinance.itdp.mobilesurvey.R;
 import com.bcafinance.itdp.mobilesurvey.helper.APIUtilities;
+import com.bcafinance.itdp.mobilesurvey.helper.HistoryKonsumen.Datum;
+import com.bcafinance.itdp.mobilesurvey.helper.HistoryKonsumen.HistoryKonsumen;
 import com.bcafinance.itdp.mobilesurvey.helper.RequestAPIServices;
 import com.bcafinance.itdp.mobilesurvey.utility.ListAdapter;
 import com.bcafinance.itdp.mobilesurvey.utility.SessionManager;
@@ -31,6 +33,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HistoryCMOActivity extends AppCompatActivity {
     private Context context = this;
@@ -38,11 +45,10 @@ public class HistoryCMOActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private DatabaseReference reference;
-    private ArrayList<inputSurvey> dataSurvey;
-    private FirebaseAuth auth;
+    private ArrayList<Datum> dataSurvey;
     private ListAdapter listAdapter;
     RequestAPIServices apiServices;
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,36 +57,56 @@ public class HistoryCMOActivity extends AppCompatActivity {
         apiServices = APIUtilities.getAPIServices();
 
         recyclerView = findViewById(R.id.datalist);
-        auth = FirebaseAuth.getInstance();
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
         MyRecyclerView();
         GetData();
     }
 
     private void GetData(){
+        String token = SessionManager.getToken(context);
         Toast.makeText(getApplicationContext(), "Mohon Tunggu Sebentar...", Toast.LENGTH_LONG).show();
-        reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("inputSurvey").addValueEventListener(new ValueEventListener() {
+        apiServices.historyKonsumen("bearer "+token).enqueue(new Callback<HistoryKonsumen>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dataSurvey = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    inputSurvey survey = snapshot.getValue(inputSurvey.class);
-                    survey.setKey(snapshot.getKey());
-                    dataSurvey.add(survey);
-                    Toast.makeText(getApplicationContext(),"Data Berhasil Dimuat", Toast.LENGTH_LONG).show();
-                }
-                listAdapter = new ListAdapter (dataSurvey, context);
-                recyclerView.setAdapter(listAdapter);
-                listAdapter.notifyDataSetChanged();
+            public void onResponse(Call<HistoryKonsumen> call, Response<HistoryKonsumen> response) {
+//                if (response.code() == 200) {
+//                    dataSurvey = new ArrayList<>();
+//                    dataSurvey survey = response.body().setData(Datum);
+//                    survey
+//                    dataSurvey.add(survey);
+//                    Toast.makeText(getApplicationContext(),"Data Berhasil Dimuat", Toast.LENGTH_LONG).show();
+//                }
+//                listAdapter = new ListAdapter(dataSurvey, context);
+//                recyclerView.setAdapter(listAdapter);
+//                listAdapter.notifyDataSetChanged();
             }
 
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),"Data Gagal Dimuat", Toast.LENGTH_LONG).show();
-                Log.e("MyListActivity", databaseError.getDetails()+" "+databaseError.getMessage());
+            public void onFailure(Call<HistoryKonsumen> call, Throwable t) {
+
             }
         });
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                dataSurvey = new ArrayList<>();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    inputSurvey survey = snapshot.getValue(inputSurvey.class);
+//                    survey.setKey(snapshot.getKey());
+//                    dataSurvey.add(survey);
+//                    Toast.makeText(getApplicationContext(),"Data Berhasil Dimuat", Toast.LENGTH_LONG).show();
+//                }
+//                listAdapter = new ListAdapter (dataSurvey, context);
+//                recyclerView.setAdapter(listAdapter);
+//                listAdapter.notifyDataSetChanged();
+//            }
+//
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(getApplicationContext(),"Data Gagal Dimuat", Toast.LENGTH_LONG).show();
+//                Log.e("MyListActivity", databaseError.getDetails()+" "+databaseError.getMessage());
+//            }
+//        });
     }
 
     private void MyRecyclerView(){

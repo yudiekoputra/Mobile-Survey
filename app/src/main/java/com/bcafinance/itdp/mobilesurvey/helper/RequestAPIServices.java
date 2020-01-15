@@ -2,22 +2,17 @@ package com.bcafinance.itdp.mobilesurvey.helper;
 
 import com.bcafinance.itdp.mobilesurvey.ResponseLogin;
 import com.bcafinance.itdp.mobilesurvey.helper.AddSurvey.AddSurvey;
+import com.bcafinance.itdp.mobilesurvey.helper.CloseSurvey.CloseSurvey;
 import com.bcafinance.itdp.mobilesurvey.helper.EditSurvey.EditSurvey;
-import com.google.gson.JsonObject;
+import com.bcafinance.itdp.mobilesurvey.helper.HistoryKonsumen.HistoryKonsumen;
 
-import org.json.JSONObject;
-
-import java.nio.charset.Charset;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -42,4 +37,8 @@ public interface RequestAPIServices {
     @POST("/API/EditSurvey")
     Call<EditSurvey> editSurvey(@Header("Authorization") String token,
                               @Body EditSurvey body);
+
+    @GET("/API/CloseSurvey")
+    Call<CloseSurvey> closeSurvey(@Query("SurveyID") String SurveyId,
+                                  @Header("Authorization") String token);
 }

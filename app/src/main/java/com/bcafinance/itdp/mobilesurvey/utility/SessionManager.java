@@ -34,11 +34,24 @@ public class SessionManager {
         editor.commit();
     }
 
-    public static void saveKodeSurvey(Context context, String kodeSurvey){
+    public static void saveKodeSurveyKonsumen(Context context, String kodeSurveyKonsumen){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
-        editor.putString(Constanta.KODESURVEY, kodeSurvey);
+        editor.putString(Constanta.KODESURVEYKONSUMEN, kodeSurveyKonsumen);
         editor.commit();
     }
+
+    public static void saveKodeSurveyRumahKonsumen(Context context, String kodeSurveyRumahKonsumen){
+        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
+        editor.putString(Constanta.KODESURVEYRUMAHKONSUMEN, kodeSurveyRumahKonsumen);
+        editor.commit();
+    }
+
+    public static void saveKodeSurveyTempatUsaha(Context context, String kodeSurveyTempatUsaha){
+        SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
+        editor.putString(Constanta.KODESURVEYTEMPATUSAHA, kodeSurveyTempatUsaha);
+        editor.commit();
+    }
+
     public static void saveResponLogin(Context context, String token, String user, String position){
         SharedPreferences.Editor editor = retrieveSharedPreferencesEditor(context);
         editor.putString(Constanta.TOKEN, token);
@@ -226,8 +239,16 @@ public class SessionManager {
         return retrieveSharedPreferences(context).getString(Constanta.KODEKONSUMEN, "");
     }
 
-    public static String getKodeSurvey(Context context){
-        return retrieveSharedPreferences(context).getString(Constanta.KODESURVEY, "");
+    public static String getKodeSurveyKonsumen(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.KODESURVEYKONSUMEN, "");
+    }
+
+    public static String getKodeSurveyRumahKonsumen(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.KODESURVEYRUMAHKONSUMEN, "");
+    }
+
+    public static String getKodeSurveyTempatUsaha(Context context){
+        return retrieveSharedPreferences(context).getString(Constanta.KODESURVEYTEMPATUSAHA, "");
     }
 
     //ambil username
